@@ -11,11 +11,7 @@ class temperature
     float _value;
 
     public:
-    temperature()
-        : _value(0)
-    {
-    }
-    temperature(unsigned char ad_value);
+    temperature(float value = 0) : _value(value) { }
     string str();
 };
 

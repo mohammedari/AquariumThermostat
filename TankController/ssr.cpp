@@ -6,10 +6,14 @@ namespace tank_controller
     
 bool ssr::_initialized = false;
 
-ssr::ssr()
+ssr::ssr(unsigned char mask)
 {
+    _mask = mask;
+    
     if(_initialized)
         return;
+        
+    _initialized = true;
     
     //É|Å[Égèâä˙âª
     TW.TIOR0.BIT.IOA = 0x00;
@@ -23,13 +27,13 @@ ssr::ssr()
 void ssr::on()
 {
     _is_on = true;
-    IO.PDR8.BYTE |= get_mask();
+    IO.PDR8.BYTE |= _mask;
 }
 
 void ssr::off()
 {
     _is_on = false;
-    IO.PDR8.BYTE &= !get_mask();
+    IO.PDR8.BYTE &= !_mask;
 }
     
 }

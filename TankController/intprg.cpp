@@ -9,7 +9,7 @@
 /*                                                                     */
 /***********************************************************************/
                   
-
+#include "serial_communication.hpp"
 
 #include <machine.h>
 #pragma section IntPRG
@@ -58,7 +58,7 @@ __interrupt(vect=21) void INT_TimerW(void) {/* sleep(); */}
 // vector 22 Timer V
 __interrupt(vect=22) void INT_TimerV(void) {/* sleep(); */}
 // vector 23 SCI3
-__interrupt(vect=23) void INT_SCI3(void) {/* sleep(); */}
+__interrupt(vect=23) void INT_SCI3(void) { util::serial_communication::receive_intrrupt(); }
 // vector 24 IIC2
 __interrupt(vect=24) void INT_IIC2(void) {/* sleep(); */}
 // vector 25 ADI

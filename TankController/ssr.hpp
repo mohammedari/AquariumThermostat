@@ -8,12 +8,10 @@ class ssr
     private:
     bool _is_on;
     static bool _initialized;
-    
-    protected:
-    virtual unsigned char get_mask() = 0;
+    unsigned char _mask;
     
     public:
-    ssr();
+    ssr(unsigned char _mask);
     void on();
     void off();
     bool is_on() { return _is_on; }

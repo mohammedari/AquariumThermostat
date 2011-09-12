@@ -8,12 +8,10 @@ class adc
 {
     private:
     static bool _initialized;
-    
-    protected:
-    virtual unsigned char get_channel() = 0;
+    unsigned char _mask;
     
     public:
-    adc();
+    adc(unsigned char mask);
     unsigned int scan();
 };
     

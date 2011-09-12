@@ -7,7 +7,8 @@ namespace tank_controller
 
 class cooler : public ssr
 {
-    unsigned char get_mask() { return 0x08; }        
+    public:
+    cooler() : ssr(0x08) { }        
 };
 
 }

@@ -4,10 +4,12 @@
 #include "buzzer.hpp"
 #include "wait.hpp"
 
+using namespace util;
+    
 namespace tank_controller
 {
 
-void suicide()
+inline void suicide()
 {
     buzzer b;
     
@@ -16,6 +18,7 @@ void suicide()
         b.on();
         wait(500);
         b.off();
+        wait(500);
     }
     
     sleep();

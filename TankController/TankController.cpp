@@ -9,6 +9,8 @@
 /*                                                                     */
 /***********************************************************************/
 
+#include "iodefine.h"
+
 #include "adc.hpp"
 #include "buzzer.hpp"
 #include "command_base.hpp"
@@ -23,7 +25,10 @@
 #include "tank_state.hpp"
 #include "temperature.hpp"
 #include "time.hpp"
+#include "wait.hpp"
 #include "watch_dog.hpp"
+#include "thermometer.hpp"
+#include "linked_list.hpp"
 
 using namespace tank_controller;
 
@@ -35,7 +40,7 @@ void abort(void);
 #endif
 
 void main(void)
-{
+{  
     suicide();
 }
 
