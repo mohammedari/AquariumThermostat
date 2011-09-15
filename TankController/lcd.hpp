@@ -10,7 +10,7 @@ class lcd
 {
     public:
     lcd();
-    void update(tank_state);
+    void update(const tank_state&);
 };
     
 }

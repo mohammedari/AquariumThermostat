@@ -13,7 +13,7 @@ inline void suicide()
 {
     buzzer b;
     
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 3; ++i)
     {
         b.on();
         wait(500);

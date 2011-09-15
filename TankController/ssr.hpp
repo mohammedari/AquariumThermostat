@@ -14,8 +14,8 @@ class ssr
     ssr(unsigned char _mask);
     void on();
     void off();
-    bool is_on() { return _is_on; }
-    bool is_off() { return !_is_on; }
+    bool is_on() const { return _is_on; }
+    bool is_off() const { return !_is_on; }
 };
 
 }

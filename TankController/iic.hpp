@@ -1,5 +1,5 @@
 #pragma once
-
+#include "define.hpp"
 #include "suicide.hpp"
 
 namespace tank_controller
@@ -13,7 +13,7 @@ class iic
     
     void start(unsigned char address);
     void end();
-    void send(unsigned char* bytes, size_t size);
+    void send(const unsigned char* bytes, size_t size);
     size_t receive(unsigned char* bytes, size_t buffer_size);
 };
 

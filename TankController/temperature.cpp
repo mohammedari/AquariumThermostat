@@ -5,7 +5,7 @@
 namespace tank_controller
 {
     
-string temperature::str()
+string temperature::str() const
 {
     char ret[7];
     

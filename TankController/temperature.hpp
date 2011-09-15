@@ -12,7 +12,7 @@ class temperature
 
     public:
     temperature(float value = 0) : _value(value) { }
-    string str();
+    string str() const;
 };
 
 }

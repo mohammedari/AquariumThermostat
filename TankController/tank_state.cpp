@@ -4,7 +4,7 @@
 namespace tank_controller
 {
     
-string tank_state::upper_line_str()
+string tank_state::upper_line_str() const
 {        
     string ret;
     ret += current_temperature.str();
@@ -17,7 +17,7 @@ string tank_state::upper_line_str()
     return ret;
 }
 
-string tank_state::lower_line_str()
+string tank_state::lower_line_str() const
 {
     string ret;
     ret += current_time.str();

@@ -27,8 +27,8 @@ class tank_state
           is_crashed(crashed)
     {
     }
-    string upper_line_str();
-    string lower_line_str();
+    string upper_line_str() const;
+    string lower_line_str() const;
 };
 
 }

@@ -3,7 +3,7 @@
 [DATABASE_VERSION]
 "11.0" 
 [WORKSPACE_DETAILS]
-"TankController" "C:\Users\KazuyukiArimatsu\Dropbox\hew\tankcontroller" "C:\Users\KazuyukiArimatsu\Dropbox\hew\tankcontroller\TankController.hws" "H8S,H8/300" "Renesas H8S,H8/300 Standard" 
+"TankController" "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController" "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController.hws" "H8S,H8/300" "Renesas H8S,H8/300 Standard" 
 [SHARED_WORKSPACE_CONTROL_STATUS]
 "" "" "" 
 "" "" "" 

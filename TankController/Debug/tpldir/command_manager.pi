@@ -1,0 +1,9 @@
+-We=--template_info_file="C:\Users\KazuyukiArimatsu\Dropbox\hew\tankcontroller\TankController\Debug\tpldir\command_manager.ti"
+-We=--ii_file="C:\Users\KazuyukiArimatsu\Dropbox\hew\tankcontroller\TankController\Debug\tpldir\command_manager.ii"
+-object="C:\Users\KazuyukiArimatsu\Dropbox\hew\tankcontroller\TankController\Debug\command_manager.obj"
+-nolist
+-debug
+-cpu=300hn
+-outcode=sjis
+-nologo
+"C:\Users\KazuyukiArimatsu\Dropbox\hew\tankcontroller\TankController\command_manager.cpp"

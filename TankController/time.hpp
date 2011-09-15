@@ -19,7 +19,7 @@ class time
         : hour(hour), minute(minute), second(second)
     {
     }
-    string str();
+    string str() const;
 };
 
 }

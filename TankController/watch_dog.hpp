@@ -6,11 +6,11 @@ namespace tank_controller
 class watch_dog
 {
     private:
-    bool _error_occured_in_previous_execution;
+    bool _is_error_occured_in_previous_execution;
     
     public:
     watch_dog();
-    bool check();
+    bool is_error_occured_in_previous_execution() const { return _is_error_occured_in_previous_execution; }
     void watch();
 };
 

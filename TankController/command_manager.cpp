@@ -8,12 +8,7 @@
 namespace tank_controller
 {
 
-void command_manager::register_command(command_base& command)
-{
-    _command_list.add(command);
-}
-
-void command_manager::parse_command(string& line)
+void command_manager::parse_command(const string& line)
 {
     int index = line.find_first_of(_separator);
     string command_str = line.substr(0, index);
@@ -21,10 +16,10 @@ void command_manager::parse_command(string& line)
     if(line.npos != index)
         string parameter_str = line.substr(index + 1);
 
-    for(linked_list<command_base>::iterator i = _command_list.begin(); i != _command_list.end(); i++)
-        if((*i).is_match(command_str))
+    for(linked_list<command_base*>::iterator i = _command_list.begin(); i != _command_list.end(); ++i)
+        if((*i)->is_match(command_str))
         {
-            (*i).execute(parameter_str);
+            (*i)->execute(parameter_str);
             break;
         }
 }

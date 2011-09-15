@@ -12,7 +12,7 @@ class adc
     
     public:
     adc(unsigned char mask);
-    unsigned int scan();
+    unsigned int scan() const;
 };
     
 }
