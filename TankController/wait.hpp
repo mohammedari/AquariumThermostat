@@ -1,7 +1,7 @@
 #pragma once
 
 #include <machine.h>
-#include "define.hpp"
+#include "stddef.h"
 
 namespace util
 {

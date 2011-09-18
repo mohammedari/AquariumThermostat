@@ -9,28 +9,14 @@
 /*                                                                     */
 /***********************************************************************/
 
-#include "iodefine.h"
-
-#include "adc.hpp"
-#include "buzzer.hpp"
-#include "command_base.hpp"
-#include "command_manager.hpp"
-#include "cooler.hpp"
-#include "heater.hpp"
-#include "iic.hpp"
-#include "lcd.hpp"
-#include "light.hpp"
-#include "ssr.hpp"
 #include "suicide.hpp"
-#include "tank_state.hpp"
-#include "temperature.hpp"
-#include "time.hpp"
-#include "wait.hpp"
-#include "watch_dog.hpp"
-#include "thermometer.hpp"
-#include "linked_list.hpp"
+#include "serial_communication.hpp"
+#include "command_manager.hpp"
+#include "commands.hpp"
 
+using namespace util;
 using namespace tank_controller;
+using namespace tank_controller::commands;
 
 void main(void);
 #ifdef __cplusplus
@@ -41,7 +27,16 @@ void abort(void);
 
 void main(void)
 {  
-    suicide();
+    serial_communication s;
+    command_manager cm;
+    help_command hc;
+    default_command dc;
+    
+    s.register_receiver(cm);
+    cm.register_command(hc);
+    cm.register_command(dc);
+    
+    while(true);
 }
 
 #ifdef __cplusplus

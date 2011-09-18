@@ -1,5 +1,5 @@
 #pragma once
-#include "define.hpp"
+#include "stddef.h"
 #include "suicide.hpp"
 
 namespace tank_controller
