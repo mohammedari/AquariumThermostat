@@ -7,6 +7,8 @@
 #include "serial_communication.hpp"
 #include "stddef.h"
 
+#include "alert.hpp"
+
 namespace util
 {
 
@@ -40,6 +42,9 @@ void command_manager::remove_one_character()
 
 void command_manager::on_received(serial_communication& s, char c)
 {
+    //test
+    //tank_controller::alert();
+    
     if(!serial_communication::is_control_character(c))
     {
         echo_back(s, c);

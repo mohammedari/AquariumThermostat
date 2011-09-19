@@ -14,6 +14,9 @@
 #include "command_manager.hpp"
 #include "commands.hpp"
 
+#include "linked_list.hpp"
+#include "alert.hpp"
+
 using namespace util;
 using namespace tank_controller;
 using namespace tank_controller::commands;
@@ -27,6 +30,12 @@ void abort(void);
 
 void main(void)
 {  
+    
+    //test
+    int* pi = new int(3);
+    if(NULL == pi)
+        alert();   
+    /*
     serial_communication s;
     command_manager cm;
     help_command hc;
@@ -35,6 +44,13 @@ void main(void)
     s.register_receiver(cm);
     cm.register_command(hc);
     cm.register_command(dc);
+    */
+    
+    //test
+    linked_list<int> list;
+    list.add(1); list.add(2); list.add(3);
+    //for(linked_list<int>::iterator i = list.begin(); i != list.end(); ++i)
+    //    alert();
     
     while(true);
 }

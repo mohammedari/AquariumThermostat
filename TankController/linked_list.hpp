@@ -2,6 +2,8 @@
 
 #include "stddef.h"
 
+#include "alert.hpp"
+
 namespace util
 {
 
@@ -29,9 +31,9 @@ class linked_list
         iterator(node* pos) : pos(pos) { }
         iterator operator++(int) { iterator i(pos); ++*this; return i; }
         iterator operator++() { pos = pos->next; return *this; }
-        T operator*() { return pos->data; }
-        bool operator==(iterator it) { return it.pos == this->pos; }
-        bool operator!=(iterator it) { return it.pos != this->pos; }
+        T operator*() const { return pos->data; }
+        bool operator==(const iterator& it) { return it.pos == this->pos; }
+        bool operator!=(const iterator& it) { return it.pos != this->pos; }
     };
         
     private:
@@ -43,7 +45,7 @@ class linked_list
     ~linked_list();
     void add(const T& data);
     iterator begin() { return iterator(first); }
-    iterator end() { return iterator(last); }
+    iterator end() { return iterator(NULL); }
 
 };
 
