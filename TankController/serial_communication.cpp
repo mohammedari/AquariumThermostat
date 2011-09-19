@@ -12,6 +12,8 @@ linked_list<serial_communication*> serial_communication::_instances;
 
 serial_communication::serial_communication()
 {
+    _instances.add(this);
+    
     if(_initialized)
         return;
         
@@ -24,6 +26,7 @@ serial_communication::serial_communication()
     
     wait(1);
     
+    IO.PMR1.BIT.TXD = 1;
     SCI3.SCR3.BIT.TE = 1;
     SCI3.SCR3.BIT.RE = 1;
     

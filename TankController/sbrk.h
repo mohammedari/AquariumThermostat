@@ -9,4 +9,4 @@
 /*                                                                     */
 /***********************************************************************/
 /* size of area managed by sbrk */
-#define HEAPSIZE 0x200
+#define HEAPSIZE 0x100

@@ -7,8 +7,6 @@
 #include "serial_communication.hpp"
 #include "stddef.h"
 
-#include "alert.hpp"
-
 namespace util
 {
 
@@ -28,9 +26,14 @@ void command_manager::parse_command(serial_communication& s, const string& line)
         }
 }
 
-void command_manager::echo_back(serial_communication& s, char c) const
+bool command_manager::add_received_character(char c)
 {
-    s.write(string(1, c));
+    //多すぎたら読み捨て
+    if(_line.size() + 1 > _line.max_size())
+        return false;
+
+    _line += c;
+    return true;
 }
 
 void command_manager::remove_one_character()
@@ -41,33 +44,30 @@ void command_manager::remove_one_character()
 }
 
 void command_manager::on_received(serial_communication& s, char c)
-{
-    //test
-    //tank_controller::alert();
-    
+{    
     if(!serial_communication::is_control_character(c))
     {
-        echo_back(s, c);
-        add_received_character(c);
+        if(add_received_character(c))
+            s.putc(c);
         return;
     }
     
     //制御コード受信
     if(serial_communication::is_new_line(c))
     {
-        echo_back(s, c);
+        s.putc(c);
         parse_command(s, _line);
         clear_received_character();
+        
+        show_command_request_character(s);
     }
     else if(serial_communication::is_back_space(c))
     {
-        remove_one_character();
-        
-        char str[3];
-        str[0] = c;
-        str[1] = ' ';   //スペースを使って明示的に消す
-        str[2] = c;
-        s.write(string(str, 3));
+        if(0 < _line.size())
+        {
+            remove_one_character();
+            s.putc(c); s.putc(' '); s.putc(c);  //戻って上書きして戻る
+        }
     }
 }
     

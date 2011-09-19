@@ -14,7 +14,7 @@
 #include "sbrk.h"
 _SBYTE *sbrk(size_t);
 
-//const size_t _sbrk_size=              /* Specifies the minimum unit of */
+const size_t _sbrk_size = 4;            /* Specifies the minimum unit of */
                                         /* the defined heap area         */
 
 #pragma pack 2
