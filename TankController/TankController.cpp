@@ -13,7 +13,6 @@
 #include "serial_communication.hpp"
 #include "command_manager.hpp"
 #include "commands.hpp"
-
 #include <string>
 
 using namespace util;
