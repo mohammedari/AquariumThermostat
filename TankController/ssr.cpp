@@ -24,16 +24,24 @@ ssr::ssr(unsigned char mask)
     IO.PCR8      = 0xFF;        //ëSïîèoóÕ
 }
 
-void ssr::on()
+void ssr::on() const
 {
-    _is_on = true;
     IO.PDR8.BYTE |= _mask;
 }
 
-void ssr::off()
+void ssr::off() const
 {
-    _is_on = false;
     IO.PDR8.BYTE &= !_mask;
+}
+
+bool ssr::is_on() const
+{
+	return 0 != (IO.PDR8.BYTE & _mask);
+}
+
+bool ssr::is_off() const
+{
+	return 0 == (IO.PDR8.BYTE & _mask);
 }
     
 }
