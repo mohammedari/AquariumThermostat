@@ -8,11 +8,11 @@ namespace util
 {
 
 bool serial_communication::_initialized = false;
-linked_list<serial_communication*> serial_communication::_instances;
+list<serial_communication*> serial_communication::_instances;
 
 serial_communication::serial_communication()
 {
-    _instances.add(this);
+    _instances.push_back(this);
     
     if(_initialized)
         return;

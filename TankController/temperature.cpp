@@ -1,21 +1,15 @@
 #include <string>
-#include <stdio.h>
 #include "temperature.hpp"
+#include "format_string.hpp"
+
+using namespace util;
 
 namespace tank_controller
 {
     
 string temperature::str() const
 {
-    char ret[7];
-    
-    string format("%4.1f");
-    format += (char)0xDF;
-    format += 'C';
-    
-    sprintf(ret, format.c_str(), _value);
-    
-    return string(ret);
+	return format_string<7>("%4.1f%c%c", _value, (char)0xDF, 'C');	//Åé
 }
 
 }

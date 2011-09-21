@@ -16,12 +16,11 @@ ssr::ssr(unsigned char mask)
     _initialized = true;
     
     //ポート初期化
-    TW.TIOR0.BIT.IOA = 0x00;
     TW.TIOR0.BIT.IOB = 0x00;
     TW.TIOR1.BIT.IOC = 0x00;
     TW.TIOR1.BIT.IOD = 0x00;    //タイマOFF
-    IO.PDR8.BYTE = 0x00;
-    IO.PCR8      = 0xFF;        //全部出力
+    IO.PCR8      |= 0x4E;       
+    IO.PDR8.BYTE &= !(0x4E);	//2,3,4,7出力
 }
 
 void ssr::on() const

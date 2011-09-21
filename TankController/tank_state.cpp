@@ -1,43 +1,28 @@
 #include <string>
 #include "tank_state.hpp"
+#include "format_string.hpp"
+
+using namespace util;
 
 namespace tank_controller
 {
     
 string tank_state::upper_line_str() const
 {        
-    string ret;
-    ret += current_temperature.str();
-    ret += (char)0x7E; //'¨'
-    ret += setting_temperature.str();
-    if(is_crashed)
-        ret += "   ";
-    else
-        ret += "  E";
-    return ret;
+    return format_string<_line_length + 1>("%s%c%s  %c", 
+		current_temperature.str().c_str(), 
+		_arrow, 
+		setting_temperature.str().c_str(), 
+		is_crashed ? 'E' : ' ');
 }
 
 string tank_state::lower_line_str() const
-{
-    string ret;
-    ret += current_time.str();
-    ret += "  H";
-    if(is_heater_on)
-        ret += (char)0xFF;  //¡
-    else
-        ret += ' ';
-    ret += 'C';
-    if(is_cooler_on)
-        ret += (char)0xFF;  //¡
-    else
-        ret += ' ';
-    ret += 'L';
-    if(is_light_on)
-        ret += (char)0xFF;  //¡
-    else
-        ret += ' ';
-    
-    return ret;
+{    	
+	return format_string<_line_length + 1>("%s H%cC%cL%c", 
+		current_time.str().c_str(),
+		is_heater_on ? _on : _off, 
+		is_cooler_on ? _on : _off, 
+		is_light_on  ? _on : _off);
 }
 
 }

@@ -1,7 +1,7 @@
 #include <string>
 #include "iodefine.h"
 #include "command_manager.hpp"
-#include "linked_list.hpp"
+#include "list.hpp"
 #include "command_base.hpp"
 #include "wait.hpp"
 #include "serial_communication.hpp"
@@ -18,7 +18,7 @@ void command_manager::parse_command(serial_communication& s, const string& line)
     if(line.npos != index)
         string parameter_str = line.substr(index + 1);
 
-    for(linked_list<command_base*>::iterator i = _command_list.begin(); i != _command_list.end(); ++i)
+    for(list<command_base*>::iterator i = _command_list.begin(); i != _command_list.end(); ++i)
         if((*i)->is_match(command_str))
         {
             (*i)->execute(s, parameter_str);

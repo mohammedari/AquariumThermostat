@@ -7,16 +7,15 @@
 namespace util
 {
 
-//要素削除なし、末尾追加のみ
-//アクセスはイテレータのみ
+//std::listの簡易実装
 template<class T> 
-class linked_list
+class list
 {
     private:
     class node
     {
         public:
-        const T data;
+        T data;
         node *next;
         node(const T& data) : data(data), next(NULL) { }
     };
@@ -30,8 +29,8 @@ class linked_list
         public:
         iterator(node* pos) : pos(pos) { }
         iterator operator++(int) { iterator i(pos); ++*this; return i; }
-        iterator operator++() { pos = pos->next; return *this; }
-        T operator*() const { return pos->data; }
+        iterator& operator++() { pos = pos->next; return *this; }
+        T& operator*() const { return pos->data; }
         bool operator==(const iterator& it) { return it.pos == this->pos; }
         bool operator!=(const iterator& it) { return it.pos != this->pos; }
     };
@@ -41,16 +40,16 @@ class linked_list
     node* last;
     
     public:
-    linked_list() : first(NULL), last(NULL) { }
-    ~linked_list();
-    void add(const T& data);
+    list() : first(NULL), last(NULL) { }
+    ~list();
+    void push_back(const T& data);
     iterator begin() { return iterator(first); }
     iterator end() { return iterator(NULL); }
 
 };
 
 template<class T> 
-void linked_list<T>::add(const T& data)
+void list<T>::push_back(const T& data)
 {
     node* n = new node(data);
     
@@ -66,7 +65,7 @@ void linked_list<T>::add(const T& data)
 }
 
 template<class T> 
-linked_list<T>::~linked_list()
+list<T>::~list()
 {
     node* n = first;
 	node* next;

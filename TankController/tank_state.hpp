@@ -10,6 +10,12 @@ namespace tank_controller
 
 class tank_state
 {
+	private:
+	static const char _on = (char)0xFF;	//¡
+	static const char _off = ' ';
+	static const char _arrow = (char)0x7E;	//¨
+	static const char _line_length = 16;
+	
     public:
     temperature current_temperature;
     temperature setting_temperature;

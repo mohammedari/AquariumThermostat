@@ -2,7 +2,7 @@
 
 #include <string>
 #include "iodefine.h"
-#include "linked_list.hpp"
+#include "list.hpp"
 #include "serial_communication_receiver_base.hpp"
 
 namespace util
@@ -17,15 +17,15 @@ class serial_communication
     private:
     static const unsigned char _baud_rate = 0x0F;   //38400
     static bool _initialized;
-    static linked_list<serial_communication*> _instances;
-    linked_list<serial_communication_receiver_base*> _receiver_list;
+    static list<serial_communication*> _instances;
+    list<serial_communication_receiver_base*> _receiver_list;
     
     public:
     void putc(char c) const;
     
     public:
     serial_communication();
-    void register_receiver(const serial_communication_receiver_base& receiver) { _receiver_list.add((serial_communication_receiver_base*)&receiver); }
+    void register_receiver(const serial_communication_receiver_base& receiver) { _receiver_list.push_back((serial_communication_receiver_base*)&receiver); }
     void write(const string& str) const;
 	void write_line(const string& str) const;
     
@@ -53,9 +53,9 @@ class serial_communication
 		char c = SCI3.RDR;
         
         //すべてのインスタンスのすべての受信イベントを起動
-        for(linked_list<serial_communication*>::iterator itc = _instances.begin(); 
+        for(list<serial_communication*>::iterator itc = _instances.begin(); 
             itc != _instances.end(); ++itc)
-            for(linked_list<serial_communication_receiver_base*>::iterator itr = (**itc)._receiver_list.begin();
+            for(list<serial_communication_receiver_base*>::iterator itr = (**itc)._receiver_list.begin();
                 itr != (**itc)._receiver_list.end(); ++itr)
                 (**itr).on_received(**itc, c);
     }
