@@ -16,7 +16,7 @@ class lcd
 	
     public:
     void reset();
-	void update(unsigned char line, const string& str);	//line‚É‚Í0‚©1‚ğw’è
+	void write_line(unsigned char line, const string& str);	//line‚É‚Í0‚©1‚ğw’è
 	
 	protected:
 	virtual void set_register_select(bool bit) = 0;

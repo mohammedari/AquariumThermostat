@@ -1,7 +1,6 @@
 #include "iodefine.h"
 #include "serial_communication.hpp"
 #include "wait.hpp"
-
 #include <string>
 
 namespace util

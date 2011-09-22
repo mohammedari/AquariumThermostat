@@ -37,7 +37,7 @@ void lcd::reset()
 	write(false, 0x06);
 }
 
-void lcd::update(unsigned char line, const string& str)
+void lcd::write_line(unsigned char line, const string& str)
 {
 	switch(line)
 	{
@@ -69,7 +69,7 @@ void lcd::write(bool register_select, unsigned char data)
 {
 	set_register_select(register_select);
 	set_read_write(false);
-	set_upper_order_bit(data>>4);
+	set_upper_order_bit(data >> 4);
 	enable_signal();
 	set_upper_order_bit(0x0F & data);
 	enable_signal();

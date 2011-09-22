@@ -13,7 +13,10 @@
 #include "serial_communication.hpp"
 #include "command_manager.hpp"
 #include "commands.hpp"
+#include "display.hpp"
 #include <string>
+
+#include "alert.hpp"
 
 using namespace util;
 using namespace tank_controller;
@@ -36,9 +39,12 @@ void main(void)
     s.register_receiver(cm);
     cm.register_command(hc);
     cm.register_command(dc); 
-    
+        
     s.write_line(string("Hello! Please enter a command."));
     cm.show_command_request_character(s);
+    
+    display d;
+    d.write_line(0, string("Hello!"));
     
     while(true);
 }

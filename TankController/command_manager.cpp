@@ -49,6 +49,7 @@ void command_manager::on_received(serial_communication& s, char c)
     {
         if(add_received_character(c))
             s.putc(c);
+            
         return;
     }
     
