@@ -17,14 +17,21 @@ class serial_communication
     private:
     static const unsigned char _baud_rate = 0x0F;   //38400
     static bool _initialized;
-    static list<serial_communication*> _instances;
+    static serial_communication* _instance;
     list<serial_communication_receiver_base*> _receiver_list;
+    
+    private:
+    serial_communication();
+    serial_communication(const serial_communication& s) { }
+    
+    public:
+    static serial_communication& get_instance();
+    static void delete_instance();
     
     public:
     void putc(char c) const;
     
     public:
-    serial_communication();
     void register_receiver(const serial_communication_receiver_base& receiver) { _receiver_list.push_back((serial_communication_receiver_base*)&receiver); }
     void write(const string& str) const;
 	void write_line(const string& str) const;
@@ -35,7 +42,7 @@ class serial_communication
     static bool is_new_line(char c) { return new_line == c; }
     
     //これを受信割り込み関数から呼んでください…
-    static void receive_intrrupt()
+    void receive_intrrupt()
     {        
 		//エラーが起きたらクリア
 		//エラー処理は特にしない
@@ -52,12 +59,10 @@ class serial_communication
         //一文字受信
 		char c = SCI3.RDR;
         
-        //すべてのインスタンスのすべての受信イベントを起動
-        for(list<serial_communication*>::iterator itc = _instances.begin(); 
-            itc != _instances.end(); ++itc)
-            for(list<serial_communication_receiver_base*>::iterator itr = (**itc)._receiver_list.begin();
-                itr != (**itc)._receiver_list.end(); ++itr)
-                (**itr).on_received(**itc, c);
+        //すべての受信イベントを起動
+        for(list<serial_communication_receiver_base*>::iterator itr = (*_instance)._receiver_list.begin();
+            itr != (*_instance)._receiver_list.end(); ++itr)
+            (**itr).on_received(*_instance, c);
     }
 };
 

@@ -52,7 +52,7 @@ void lcd::write_line(unsigned char line, const string& str)
 	}
 	
 	string s(str);
-	s.resize(_display_length, ' ');
+	s.resize(_display_length, 'a');
 	
 	for(string::const_iterator it = s.begin(); it != s.end(); ++it)
 		write(true, *it);
@@ -63,6 +63,7 @@ void lcd::enable_signal()
 	set_enable(true);
 	wait_usec(1);
 	set_enable(false);
+    wait_usec(1);
 }
 
 void lcd::write(bool register_select, unsigned char data)
@@ -73,11 +74,6 @@ void lcd::write(bool register_select, unsigned char data)
 	enable_signal();
 	set_upper_order_bit(0x0F & data);
 	enable_signal();
-}
-
-unsigned char lcd::read()
-{
-	return 0;	//–¢ŽÀ‘•
 }
 
 void lcd::set_upper_order_bit(unsigned char data)

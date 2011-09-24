@@ -30,7 +30,6 @@ class lcd
     private:
 	void enable_signal();
 	void write(bool register_select, unsigned char data);
-	unsigned char read();
     void set_upper_order_bit(unsigned char data);
 };
     

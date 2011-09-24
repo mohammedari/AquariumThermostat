@@ -2,22 +2,32 @@
 #include "serial_communication.hpp"
 #include "wait.hpp"
 #include <string>
+#include "stddef.h"
 
 namespace util
 {
 
 bool serial_communication::_initialized = false;
-list<serial_communication*> serial_communication::_instances;
+serial_communication* serial_communication::_instance = NULL;
+
+serial_communication& serial_communication::get_instance()
+{
+    if(NULL == _instance)
+        _instance = new serial_communication();
+        
+    return *_instance;
+}
+
+void serial_communication::delete_instance()
+{
+    if(NULL != _instance)
+        delete _instance;
+        
+    _instance = NULL;
+}    
 
 serial_communication::serial_communication()
-{
-    _instances.push_back(this);
-    
-    if(_initialized)
-        return;
-        
-    _initialized = true;
-    
+{   
     //シリアルポート初期化
     SCI3.SCR3.BYTE = 0x00;
     SCI3.SMR.BYTE = 0x00;   //ストップビット1、偶数パリティ

@@ -31,7 +31,7 @@ void abort(void);
 
 void main(void)
 {  
-    serial_communication s;
+    serial_communication& s = serial_communication::get_instance();
     command_manager cm;
     help_command hc;
     default_command dc;
@@ -47,6 +47,8 @@ void main(void)
     d.write_line(0, string("Hello!"));
     
     while(true);
+    
+    serial_communication::delete_instance();
 }
 
 #ifdef __cplusplus
