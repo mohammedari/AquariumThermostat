@@ -16,25 +16,32 @@ class tank_state
 	static const char _arrow = (char)0x7E;	//¨
 	static const char _line_length = 16;
 	
+    private:
+    bool _is_heater_on;
+    bool _is_cooler_on;
+    bool _is_light_on;
+    bool _is_crashed;
+    
     public:
     temperature current_temperature;
     temperature setting_temperature;
     time current_time;
-    bool is_heater_on;
-    bool is_cooler_on;
-    bool is_light_on;
-    bool is_crashed;
+    bool is_heater_on() { return _is_heater_on; }
+    bool is_cooler_on() { return _is_cooler_on; }
+    bool is_light_on() { return _is_light_on; }
+    bool is_crashed() { return _is_crashed; }
     
     public:
     tank_state(bool crashed)
-        : is_heater_on(false),
-          is_cooler_on(false),
-          is_light_on(false),
-          is_crashed(crashed)
+        : _is_heater_on(false),
+          _is_cooler_on(false),
+          _is_light_on(false),
+          _is_crashed(crashed)
     {
     }
     string upper_line_str() const;
     string lower_line_str() const;
+    void update_switches();
 };
 
 }

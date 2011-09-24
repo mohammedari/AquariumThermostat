@@ -13,16 +13,32 @@ string tank_state::upper_line_str() const
 		current_temperature.str().c_str(), 
 		_arrow, 
 		setting_temperature.str().c_str(), 
-		is_crashed ? 'E' : ' ');
+		_is_crashed ? 'E' : ' ');
 }
 
 string tank_state::lower_line_str() const
 {    	
 	return format_string<_line_length + 1>("%s H%cC%cL%c", 
 		current_time.str().c_str(),
-		is_heater_on ? _on : _off, 
-		is_cooler_on ? _on : _off, 
-		is_light_on  ? _on : _off);
+		_is_heater_on ? _on : _off, 
+		_is_cooler_on ? _on : _off, 
+		_is_light_on  ? _on : _off);
+}
+
+void tank_state::update_switches()
+{
+    if(current_temperature > setting_temperature)
+        _is_heater_on = false;
+    if(current_temperature < setting_temperature)
+        _is_cooler_on = false; 
+    
+    if(1.0 < setting_temperature - current_temperature)
+        _is_heater_on = true;
+    if(1.0 < current_temperature - setting_temperature)
+        _is_cooler_on = true;
+        
+    //lightのスイッチについてもココで操作
+        
 }
 
 }

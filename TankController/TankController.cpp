@@ -16,8 +16,6 @@
 #include "display.hpp"
 #include <string>
 
-#include "alert.hpp"
-
 using namespace util;
 using namespace tank_controller;
 using namespace tank_controller::commands;
@@ -30,7 +28,7 @@ void abort(void);
 #endif
 
 void main(void)
-{  
+{      
     serial_communication& s = serial_communication::get_instance();
     command_manager cm;
     help_command hc;

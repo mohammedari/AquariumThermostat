@@ -4,7 +4,7 @@
 namespace util
 {
 	
-template<class T, int N>
+template<class T, size_t N>
 class array
 {
 	private:

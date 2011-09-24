@@ -19,5 +19,9 @@ string format_string(const char* format, ...)
 	
 	return string(buf);
 }
+
+//テンプレート引数を指定しない場合はデフォルト値
+static const size_t default_buf_size = 20;
+string format_string(const char* format, ...);
 	
 }
