@@ -19,10 +19,5 @@ string format_string(const char* format, ...)
 	
 	return string(buf);
 }
-
-static const size_t default_buf_size = 20;
-
-template<>
-string format_string<default_buf_size>(const char* format, ...);
 	
 }

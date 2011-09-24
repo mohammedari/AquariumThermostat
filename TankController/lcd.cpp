@@ -3,6 +3,10 @@
 #include "tank_state.hpp"
 #include "wait.hpp" 
 
+#include "iodefine.h"
+#include "serial_communication.hpp"
+#include "format_string.hpp"
+
 namespace util
 {
 
@@ -11,30 +15,35 @@ void lcd::reset()
 	set_register_select(false);
 	set_read_write(false);
 	set_enable(false);
-	set_upper_order_bit(0x00);
 	
 	//LCDの初期化待ち
-	wait(30);
+	wait(15);
 	
-	//上位、下位ビットのコマンドがずれている可能性に備える
+    //よくわかんないけど3回 0011
 	set_register_select(false);
-	set_upper_order_bit(0x02);
+	set_upper_order_bit(0x03);
+	enable_signal();
+    wait(5);
+	set_upper_order_bit(0x03);
+	enable_signal();
+    wait_usec(100);
+	set_upper_order_bit(0x03);
 	enable_signal();
 	
 	//4bit、2ライン、5x7ドット
-	write(false, 0x20);
+	write(false, 0x28); //00101000
 	wait_usec(39);
 	
 	//表示ON、カーソルOFF、点滅OFF
-	write(false, 0x0C);
+	write(false, 0x0C); //00001100
 	wait_usec(39);
 	
 	//ディスプレイクリア
-	write(false, 0x01);
+	write(false, 0x01); //00000001
 	wait(2);
 	
 	//エントリーモードセット
-	write(false, 0x06);
+	write(false, 0x06); //00000110
 }
 
 void lcd::write_line(unsigned char line, const string& str)
@@ -42,10 +51,10 @@ void lcd::write_line(unsigned char line, const string& str)
 	switch(line)
 	{
 		case 0:
-			write(false, 0x80);
+			write(false, 0x80); //10000000
 		break;
 		case 1:
-			write(false, 0xC0);
+			write(false, 0xC0); //11000000
 		break;
 		default:
 			return;
@@ -68,12 +77,22 @@ void lcd::enable_signal()
 
 void lcd::write(bool register_select, unsigned char data)
 {
+    serial_communication& s = serial_communication::get_instance();
+    
 	set_register_select(register_select);
 	set_read_write(false);
-	set_upper_order_bit(data >> 4);
+    
+    s.write(format_string<3>("%1d%1d", IO.PDR1.BIT.B1, IO.PDR1.BIT.B0));
+    
+	set_upper_order_bit(data >> 4);        
 	enable_signal();
+    
+    s.write(format_string<5>("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
+    
 	set_upper_order_bit(0x0F & data);
 	enable_signal();
+    
+    s.write_line(format_string<5>("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
 }
 
 void lcd::set_upper_order_bit(unsigned char data)
