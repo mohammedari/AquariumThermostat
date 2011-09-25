@@ -7,7 +7,6 @@
 namespace util
 {
 
-bool serial_communication::_initialized = false;
 serial_communication* serial_communication::_instance = NULL;
 
 serial_communication& serial_communication::get_instance()

@@ -14,7 +14,6 @@ class array
 	size_t size() { return N; }
 	
 	public:
-	T& operator[](size_t n) { return _array[n]; }
 	operator T*() { return _array; }
 	
     public:

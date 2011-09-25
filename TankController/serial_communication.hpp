@@ -16,7 +16,6 @@ class serial_communication
     
     private:
     static const unsigned char _baud_rate = 0x0F;   //38400
-    static bool _initialized;
     static serial_communication* _instance;
     list<serial_communication_receiver_base*> _receiver_list;
     

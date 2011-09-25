@@ -1,6 +1,6 @@
 #include "display.hpp"
 #include "lcd.hpp"
-#include "tank_state.hpp"
+#include "tank_status.hpp"
 
 using namespace util;
 
@@ -32,7 +32,7 @@ display::display()
 	reset();
 }
 
-void display::update(const tank_state& state)
+void display::update(const tank_status& state)
 {
 }
 	

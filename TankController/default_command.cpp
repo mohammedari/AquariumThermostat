@@ -8,7 +8,7 @@ namespace commands {
     
 void default_command::execute(const util::serial_communication& s, const string& parameter)
 {
-    s.write_line(string("Invalid command was entered. Please type \"help\" and check command list."));
+    s.write_line("Invalid command was entered. Please type \"help\" and check command list.");
 }
 
 }}

@@ -1,5 +1,5 @@
 #include <string>
-#include "tank_state.hpp"
+#include "tank_status.hpp"
 #include "format_string.hpp"
 
 using namespace util;
@@ -7,7 +7,7 @@ using namespace util;
 namespace tank_controller
 {
     
-string tank_state::upper_line_str() const
+string tank_status::upper_line_str() const
 {        
     return format_string<_line_length + 1>("%s%c%s  %c", 
 		current_temperature.str().c_str(), 
@@ -16,7 +16,7 @@ string tank_state::upper_line_str() const
 		_is_crashed ? 'E' : ' ');
 }
 
-string tank_state::lower_line_str() const
+string tank_status::lower_line_str() const
 {    	
 	return format_string<_line_length + 1>("%s H%cC%cL%c", 
 		current_time.str().c_str(),
@@ -25,7 +25,7 @@ string tank_state::lower_line_str() const
 		_is_light_on  ? _on : _off);
 }
 
-void tank_state::update_switches()
+void tank_status::update_switches()
 {
     if(current_temperature > setting_temperature)
         _is_heater_on = false;

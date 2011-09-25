@@ -2,7 +2,7 @@
 
 #include "iodefine.h"
 #include "lcd.hpp"
-#include "tank_state.hpp"
+#include "tank_status.hpp"
 
 namespace tank_controller
 {
@@ -14,7 +14,7 @@ class display : public util::lcd
 	
 	public:
 	display();
-	void update(const tank_state& state);
+	void update(const tank_status& state);
 	
 	protected:
 	virtual void set_register_select(bool bit) { IO.PDR1.BIT.B1 = bit ? 1 : 0; }

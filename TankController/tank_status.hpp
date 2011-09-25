@@ -8,7 +8,7 @@
 namespace tank_controller
 {
 
-class tank_state
+class tank_status
 {
 	private:
 	static const char _on = (char)0xFF;	//¡
@@ -32,7 +32,7 @@ class tank_state
     bool is_crashed() { return _is_crashed; }
     
     public:
-    tank_state(bool crashed)
+    tank_status(bool crashed)
         : _is_heater_on(false),
           _is_cooler_on(false),
           _is_light_on(false),

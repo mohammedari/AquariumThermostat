@@ -13,10 +13,19 @@ namespace util
 void command_manager::parse_command(serial_communication& s, const string& line)
 {
     int index = line.find_first_of(_separator);
-    string command_str = line.substr(0, index);
-    string parameter_str("");
-    if(line.npos != index)
-        string parameter_str = line.substr(index + 1);
+    string command_str;
+    string parameter_str;
+    
+    if(-1 == index)
+    {
+        command_str = line;
+        parameter_str = "";
+    }
+    else
+    {
+        command_str = line.substr(0, index);
+        parameter_str = line.substr(index + 1);
+    }
 
     for(list<command_base*>::iterator i = _command_list.begin(); i != _command_list.end(); ++i)
         if((*i)->is_match(command_str))

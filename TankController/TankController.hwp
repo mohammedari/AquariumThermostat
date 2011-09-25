@@ -132,8 +132,12 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\default_command.hpp" "User" "C++ header file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.cpp" "User" "C++ source file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.hpp" "User" "C++ header file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\eeprom.cpp" "User" "C++ source file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\eeprom.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\format_string.cpp" "User" "C++ source file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\format_string.hpp" "User" "C++ header file|util" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\get_command.cpp" "User" "C++ source file|tank_controller|command" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\get_command.hpp" "User" "C++ header file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\heater.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\help_command.cpp" "User" "C++ source file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\help_command.hpp" "User" "C++ header file|tank_controller|command" 2 
@@ -147,6 +151,8 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\list.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "User" "C++ source file" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "User" "C++ source file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\sbrk.c" "User" "C source file" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\sbrk.h" "User" "C header file" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\serial_communication.cpp" "User" "C++ source file|util" 2 
@@ -156,8 +162,8 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\ssr.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\stacksct.h" "User" "C header file" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\suicide.hpp" "User" "C++ header file|tank_controller" 2 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_state.cpp" "User" "C++ source file|tank_controller" 2 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_state.hpp" "User" "C++ header file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_status.cpp" "User" "C++ source file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_status.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\temperature.cpp" "User" "C++ source file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\temperature.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\thermometer.hpp" "User" "C++ header file|tank_controller" 2 
@@ -195,23 +201,26 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\dbsct.c" "046f37123e37cc10" 3 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\default_command.cpp" "062678495567cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.cpp" "030e93b6f987cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\eeprom.cpp" "0eb08d523bb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\format_string.cpp" "0014b37ff1b7cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\get_command.cpp" "0b0c41bfadb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\help_command.cpp" "021adc6a5367cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\hwsetup.cpp" "046f37123e37cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\i2c.cpp" "0005adf112b7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\intprg.cpp" "046f37123e37cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" "0caa0d73cf67cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "046f37123e37cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "043d0833bcb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\sbrk.c" "046f37123e37cc10" 3 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\serial_communication.cpp" "046f37123e37cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\ssr.cpp" "046f37123e37cc10" 2 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_state.cpp" "046f37123e37cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_status.cpp" "0b5cd09aedb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\temperature.cpp" "046f37123e37cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\time.cpp" "046f37123e37cc10" 2 
 [OPTIONS_Debug_Renesas H8S,H8/300 C/C++ Library Generator]
 "Single Shot" "0e372dfd76e6cc10" 1 
 [OPTIONS_Debug_Renesas OptLinker]
-"Single Shot" "07340ef112b7cc10" 5 
+"Single Shot" "07c7419aedb7cc10" 5 
 [OPTIONS_Debug]
 "" 0 
 "[V|VERSION|1] [B|DEBUG|1] [S|OUTPUTPATH|^"$(CONFIGDIR)\$(FILELEAF).obj^"] [B|LIST|1] [S|LISTPATH|^"$(CONFIGDIR)\$(FILELEAF).lis^"] [B|SECTION|1] [B|ERRORPATH|1] [B|CHGINCPATH|1] [S|CPU|300HN] [I|SBR|0]
@@ -238,23 +247,26 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\dbsct.c" "07534dafd177cc10" 3 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\default_command.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.cpp" "030e93b6f987cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\eeprom.cpp" "0eb08d523bb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\format_string.cpp" "0014b37ff1b7cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\get_command.cpp" "0b0c41bfadb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\help_command.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\hwsetup.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\i2c.cpp" "0005adf112b7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\intprg.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "07534dafd177cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "043d0833bcb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\sbrk.c" "07534dafd177cc10" 3 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\serial_communication.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\ssr.cpp" "07534dafd177cc10" 2 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_state.cpp" "07534dafd177cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_status.cpp" "0b5cd09aedb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\temperature.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\time.cpp" "07534dafd177cc10" 2 
 [OPTIONS_Release_Renesas H8S,H8/300 C/C++ Library Generator]
 "Single Shot" "02180343e177cc10" 1 
 [OPTIONS_Release_Renesas OptLinker]
-"Single Shot" "07340ef112b7cc10" 5 
+"Single Shot" "07c7419aedb7cc10" 5 
 [OPTIONS_Release]
 "" 0 
 "[V|VERSION|1] [B|DEBUG|0] [S|OUTPUTPATH|^"$(CONFIGDIR)\$(FILELEAF).obj^"] [B|LIST|0] [B|CHGINCPATH|1] [B|ERRORPATH|1] [S|CPU|300HN]" 4 
