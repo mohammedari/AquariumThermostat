@@ -9,7 +9,7 @@ namespace tank_controller
     
 string temperature::str() const
 {
-	return format_string<7>("%4.1f%c%c", _value, (char)0xDF, 'C');	//
+	return format_string("%4.1f%c%c", _value, (char)0xDF, 'C');	//
 }
 
 }

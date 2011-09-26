@@ -9,7 +9,7 @@ namespace tank_controller
     
 string tank_status::upper_line_str() const
 {        
-    return format_string<_line_length + 1>("%s%c%s  %c", 
+    return format_string("%s%c%s  %c", 
 		current_temperature.str().c_str(), 
 		_arrow, 
 		setting_temperature.str().c_str(), 
@@ -18,7 +18,7 @@ string tank_status::upper_line_str() const
 
 string tank_status::lower_line_str() const
 {    	
-	return format_string<_line_length + 1>("%s H%cC%cL%c", 
+	return format_string("%s H%cC%cL%c", 
 		current_time.str().c_str(),
 		_is_heater_on ? _on : _off, 
 		_is_cooler_on ? _on : _off, 

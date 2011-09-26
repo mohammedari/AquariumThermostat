@@ -9,7 +9,8 @@
 /*                                                                     */
 /***********************************************************************/
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "stddef.h"
 #include "typedefine.h"
 #include "sbrk.h"
 _SBYTE *sbrk(size_t);

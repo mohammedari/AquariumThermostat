@@ -72,7 +72,7 @@ void main(void)
         s.write_line("loop");
         
         //ó‘Ô‚ÌXV
-        //state.current_time = rtc.get();
+        state.current_time = rtc.get();
         wait(500);
     }
     

@@ -82,17 +82,17 @@ void lcd::write(bool register_select, unsigned char data)
 	set_register_select(register_select);
 	set_read_write(false);
     
-    s.write(format_string<3>("%1d%1d", IO.PDR1.BIT.B1, IO.PDR1.BIT.B0));
+    s.write(format_string("%1d%1d", IO.PDR1.BIT.B1, IO.PDR1.BIT.B0));
     
 	set_upper_order_bit(data >> 4);        
 	enable_signal();
     
-    s.write(format_string<5>("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
+    s.write(format_string("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
     
 	set_upper_order_bit(0x0F & data);
 	enable_signal();
     
-    s.write_line(format_string<5>("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
+    s.write_line(format_string("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
 }
 
 void lcd::set_upper_order_bit(unsigned char data)
