@@ -15,6 +15,7 @@ class lcd
 	static const unsigned char _display_length = 16;
 	
     public:
+	virtual ~lcd() { }
     void reset();
 	void write_line(unsigned char line, const string& str);	//line‚É‚Í0‚©1‚ðŽw’è
 	

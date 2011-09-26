@@ -9,6 +9,7 @@ namespace util
 class command_base
 {
     public:
+	virtual ~command_base() { }
     virtual bool is_match(const string& command) const = 0;
     virtual void execute(const serial_communication& s, const string& parameter) = 0;
 };
