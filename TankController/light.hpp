@@ -7,7 +7,8 @@ namespace tank_controller
 
 class light : public ssr
 {
-    unsigned char get_mask() { return 0x04; }        
+	public:
+    light() : ssr(0x04) { } 
 };
 
 }

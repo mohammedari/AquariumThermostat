@@ -19,11 +19,11 @@ class rtc
     rtc(util::i2c& com);
     
     void set(const time& t);
-    time get();
+    time get() const;
     
     private:
-    unsigned char _convert_to_bcd(unsigned char integer);
-    unsigned char _convert_from_bcd(unsigned char bcd);
+    unsigned char _convert_to_bcd(unsigned char integer) const;
+    unsigned char _convert_from_bcd(unsigned char bcd) const;
 };
 
 }

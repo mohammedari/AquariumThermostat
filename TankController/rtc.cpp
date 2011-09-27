@@ -34,7 +34,7 @@ void rtc::set(const time& t)
     _i2c.stop();
 }
 
-time rtc::get()
+time rtc::get() const 
 {
     array<unsigned char, 3> buf;
     
@@ -49,7 +49,7 @@ time rtc::get()
                 _convert_from_bcd(buf[0])); 
 }
 
-unsigned char rtc::_convert_to_bcd(unsigned char integer)
+unsigned char rtc::_convert_to_bcd(unsigned char integer) const
 {
     unsigned char high = integer / 10;
     unsigned char low = integer % 10;
@@ -57,7 +57,7 @@ unsigned char rtc::_convert_to_bcd(unsigned char integer)
     return (high << 4) + low;
 }
 
-unsigned char rtc::_convert_from_bcd(unsigned char bcd)
+unsigned char rtc::_convert_from_bcd(unsigned char bcd) const
 {
     unsigned char high = bcd >> 4;
     unsigned char low = bcd & 0x0F;

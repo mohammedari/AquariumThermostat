@@ -16,6 +16,11 @@
 #include "display.hpp"
 #include "eeprom.hpp"
 #include "rtc.hpp"
+#include "thermometer.hpp"
+#include "watch_dog.hpp"
+#include "heater.hpp"
+#include "cooler.hpp"
+#include "light.hpp"
 #include "tank_status.hpp"
 #include "wait.hpp"
 #include <string>
@@ -31,20 +36,33 @@ void abort(void);
 }
 #endif
 
+void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
+{
+    status.current_time = clock.get();
+	status.current_temperature = thermo.measure();
+}
+
 void main(void)
 {   
+	//SSR
+	heater h;
+	cooler c;
+	light l;
+	
     //ウォッチドッグ
-    
-    //AD
+    watch_dog dog;
+	
+    //温度計
+	thermometer thermo;
     
     //EEPROMとRTC
     i2c& i = i2c::get_instance();
     eeprom rom(i);
-    rtc rtc(i);
+    rtc clock(i);
     
     //水槽の状態
-    tank_status state(false);
-    state.current_time = rtc.get();
+    tank_status status(dog.is_error_occured_in_previous_execution());
+	measure(status, clock, thermo);
     
     //LCD
     //display d;
@@ -54,7 +72,7 @@ void main(void)
     serial_communication& s = serial_communication::get_instance();
     command_manager cm;
     
-    get_command gc(state);
+    get_command gc(status);
     help_command hc;
     default_command dc;
     
@@ -69,10 +87,18 @@ void main(void)
     
     while(true)
     {
+		dog.watch();
         s.write_line("loop");
         
         //状態の更新
-        state.current_time = rtc.get();
+		measure(status, clock, thermo);
+		
+		//SSRの切り替え
+		status.update_switches();
+		status.is_heater_on() ? h.on() : h.off();
+		status.is_cooler_on() ? c.on() : c.off();
+		status.is_light_on() ? l.on() : l.off();
+		
         wait(500);
     }
     

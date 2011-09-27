@@ -6,11 +6,15 @@
 namespace tank_controller
 {
 
-class thermometer : public adc
+class thermometer
 {
+	private:
+	util::adc _adc;	//AN1
+	static const double _conversion_gain;
+	
     public:
-    thermometer() : adc(0x00) { }
-    temperature measure();
+	thermometer() : _adc(0x01) { }
+    temperature measure() const;
 };
 
 }
