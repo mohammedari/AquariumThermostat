@@ -29,14 +29,20 @@ void lcd::reset()
     wait_usec(100);
 	set_upper_order_bit(0x03);
 	enable_signal();
+    wait_usec(100);
 	
-	//4bit、2ライン、5x7ドット
+    //4bit
+	set_upper_order_bit(0x03);
+	enable_signal();
+    wait_usec(40);
+    
+	//2ライン、5x7ドット
 	write(false, 0x28); //00101000
-	wait_usec(39);
+	wait_usec(40);
 	
 	//表示ON、カーソルOFF、点滅OFF
 	write(false, 0x0C); //00001100
-	wait_usec(39);
+	wait_usec(40);
 	
 	//ディスプレイクリア
 	write(false, 0x01); //00000001
@@ -44,6 +50,7 @@ void lcd::reset()
 	
 	//エントリーモードセット
 	write(false, 0x06); //00000110
+    wait_usec(40);
 }
 
 void lcd::write_line(unsigned char line, const string& str)
@@ -52,23 +59,32 @@ void lcd::write_line(unsigned char line, const string& str)
 	{
 		case 0:
 			write(false, 0x80); //10000000
+            wait_usec(40);
 		break;
 		case 1:
 			write(false, 0xC0); //11000000
+            wait_usec(40);
 		break;
 		default:
 			return;
 	}
 	
-	string s(str);
-	s.resize(_display_length, 'a');
-	
-	for(string::const_iterator it = s.begin(); it != s.end(); ++it)
+	for(string::const_iterator it = str.begin(); it != str.end(); ++it)
+    {
 		write(true, *it);
+        wait_usec(40);
+    }
+    
+    for(int i = _display_length - str.size(); 0 < i; --i)
+    {
+        write(true, ' ');
+        wait_usec(40);
+    }
 }
 
 void lcd::enable_signal()
 {
+	wait_usec(1);
 	set_enable(true);
 	wait_usec(1);
 	set_enable(false);
