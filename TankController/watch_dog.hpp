@@ -16,6 +16,7 @@ class watch_dog
     watch_dog();
     bool is_error_occured_in_previous_execution() const { return _is_error_occured_in_previous_execution; }
     void watch();
+    void run();
 };
 
 }

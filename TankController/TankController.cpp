@@ -23,6 +23,7 @@
 #include "light.hpp"
 #include "tank_status.hpp"
 #include "wait.hpp"
+#include "alert.hpp"
 #include <string>
 
 using namespace util;
@@ -36,6 +37,8 @@ void abort(void);
 }
 #endif
 
+const unsigned int setting_address = 0x00;
+
 void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
 {
     status.current_time = clock.get();
@@ -44,6 +47,12 @@ void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
 
 void main(void)
 {   
+    serial_communication& s = serial_communication::get_instance();
+    s.write_line("---------------------------");
+    s.write_line("      tank controller");
+    s.write_line("---------------------------");
+    s.write_line("initializing devices...");
+    
 	//SSR
 	heater h;
 	cooler c;
@@ -51,45 +60,58 @@ void main(void)
 	
     //ウォッチドッグ
     watch_dog dog;
+    s.write_line("watchdog ok");
 	
     //温度計
 	thermometer thermo;
+    s.write_line("thermometer ok");
     
     //EEPROMとRTC
     i2c& i = i2c::get_instance();
     eeprom rom(i);
+    s.write_line("eeprom ok");
     rtc clock(i);
-    
-    //水槽の状態
-    tank_status status(dog.is_error_occured_in_previous_execution());
-	measure(status, clock, thermo);
+    s.write_line("rtc ok");
     
     //LCD
     //display d;
     //d.write_line(0, string("Hello!"));
+    s.write_line("lcd ok");
     
-    //シリアル通信とコマンド管理
-    serial_communication& s = serial_communication::get_instance();
+    //水槽の状態
+    s.write_line("initializing status...");
+    bool e = dog.is_error_occured_in_previous_execution();
+    if(e)
+    {
+        s.write_line("error occured in previous execution!");
+        alert();
+    }
+    tank_status status(e);
+    status.setting_temperature = rom.load<temperature>(setting_address);
+    measure(status, clock, thermo);
+    
+    //コマンド管理
     command_manager cm;
     
     get_command gc(status);
     help_command hc;
+    test_command tc;
     default_command dc;
     
     s.register_receiver(cm);
     cm.register_command(gc);
     cm.register_command(hc);
+    cm.register_command(tc);
     cm.register_command(dc); 
     
     //初期化完了
-    s.write_line(string("Hello! Please enter a command."));
+    s.write_line("initialize complete");
+    s.write_line("---------------------------");
     cm.show_command_request_character(s);
     
+    dog.run();
     while(true)
     {
-		dog.watch();
-        s.write_line("loop");
-        
         //状態の更新
 		measure(status, clock, thermo);
 		
@@ -99,7 +121,7 @@ void main(void)
 		status.is_cooler_on() ? c.on() : c.off();
 		status.is_light_on() ? l.on() : l.off();
 		
-        wait(500);
+		dog.watch();
     }
     
     serial_communication::delete_instance();

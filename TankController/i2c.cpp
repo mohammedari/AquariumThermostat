@@ -27,13 +27,11 @@ void i2c::delete_instance()
 i2c::i2c()
 {
     IIC2.ICCR1.BIT.ICE = 1;
-    IIC2.ICCR1.BIT.CKS = 0x0A;  //1010 208kHz
-    IIC2.ICMR.BIT.MLS = 0;  //MSBファースト
-    IIC2.ICMR.BIT.WAIT = 1; //送信時ウェイト挿入
-    IIC2.ICIER.BYTE = 0x00; //割り込み禁止、ACK無視、送信ACK=0
-    IIC2.SAR.BIT.FS = 0;    //I2Cフォーマット
-    
-    //IIC2.ICCR2.BIT.IICRST = 1;    //I2Cリセット
+    IIC2.ICCR1.BIT.CKS = 0x0D;  //1101 100kHz
+    IIC2.ICMR.BIT.MLS = 0;      //MSBファースト
+    IIC2.ICMR.BIT.WAIT = 1;     //送信時ウェイト挿入
+    IIC2.ICIER.BYTE = 0x00;     //割り込み禁止、ACK無視、送信ACK=0
+    IIC2.SAR.BIT.FS = 0;        //I2Cフォーマット
 }
 
 bool i2c::start(unsigned char control) const
@@ -60,15 +58,16 @@ bool i2c::start(unsigned char control) const
 
 void i2c::stop() const
 {
+    IIC2.ICSR.BIT.TEND = 0;     //送信の後始末
+
+    IIC2.ICSR.BIT.STOP = 0;    
     send_stop_bit();
-    
-    IIC2.ICSR.BIT.TEND = 0;
-    IIC2.ICSR.BIT.NACKF = 0;    //送信の後始末
     
     while(!IIC2.ICSR.BIT.STOP);
     
     volatile unsigned char dummy = IIC2.ICDRR;
-    IIC2.ICCR1.BIT.RCVD = 0;    //受信の後始末
+    IIC2.ICCR1.BIT.RCVD = 0;    //
+    IIC2.ICIER.BIT.ACKBT = 0;   //受信の後始末
     
     IIC2.ICCR1.BIT.MST = 0; //スレーブ
     IIC2.ICCR1.BIT.TRS = 0; //受信
@@ -87,19 +86,22 @@ void i2c::write(const unsigned char* data, size_t size) const
 
 void i2c::read(unsigned char* buff, size_t size) const
 {
-    IIC2.ICSR.BIT.TEND = 0;
-    IIC2.ICCR1.BIT.TRS = 0; //受信モードに切り替え
-    IIC2.ICSR.BIT.TDRE = 0;
+    IIC2.ICSR.BIT.TEND = 0; //
+    IIC2.ICCR1.BIT.TRS = 0; //
+    IIC2.ICSR.BIT.TDRE = 0; //受信モードに切り替え
     
-    volatile unsigned char dummy = IIC2.ICDRR; //ダミーリード
+    volatile unsigned char dummy = IIC2.ICDRR; //受信開始
     
     for(size_t i = 0; i < size; ++i)
     {
         while(!IIC2.ICSR.BIT.RDRF);
         
+        //最終フレーム
         if(i == size - 1)
-            IIC2.ICCR1.BIT.RCVD = 1;    //最終フレームならRCVDをセット
-             
+        {
+            IIC2.ICCR1.BIT.RCVD = 1;    //次受信禁止
+            IIC2.ICIER.BIT.ACKBT = 1;   //NACK送信
+        }
                     
         buff[i] = IIC2.ICDRR;
     }

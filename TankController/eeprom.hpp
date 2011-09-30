@@ -1,9 +1,7 @@
 #pragma once
 
 #include "i2c.hpp"
-#include "temperature.hpp"
-
-#include "serial_communication.hpp"
+#include "wait.hpp"
 
 namespace tank_controller
 {
@@ -20,21 +18,22 @@ class eeprom
     template<class T>
     void save(unsigned int address, const T& t)
     {
-        serial_communication& s = serial_communication::get_instance();
-        s.write_line(string("starting..."));
+        while(_i2c.is_busy());
+        
         _i2c.start(_address & 0xFE);    //書き込みモード
-        s.write_line(string("writing address..."));
         _i2c.write((const unsigned char*)&address, sizeof(unsigned int));
-        s.write_line(string("writing data..."));
-        _i2c.write((const unsigned char*)&t, sizeof(temperature));
-        s.write_line(string("stopping..."));
+        _i2c.write((const unsigned char*)&t, sizeof(T));
         _i2c.stop();
+    
+        wait(5);    //書き込み待ち
     }
     
     template<class T>
     T load(unsigned int address)
     {
         array<unsigned char, sizeof(T)> t;
+        
+        while(_i2c.is_busy());
     
         _i2c.start(_address & 0xFE);    //書き込みモード
         _i2c.write((const unsigned char*)&address, sizeof(unsigned int));

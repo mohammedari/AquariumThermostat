@@ -13,6 +13,8 @@ const unsigned char rtc::_seconds_address = 0x02;
 
 rtc::rtc(i2c& com) : _i2c(com)
 {
+    while(_i2c.is_busy());
+    
     //コントロールレジスタを初期化
     _i2c.start(_address & 0xFE);    //書き込みモード
     _i2c.write((const unsigned char*)&_control_address, sizeof(unsigned char));
@@ -28,6 +30,8 @@ void rtc::set(const time& t)
     data[1] = _convert_to_bcd(t.minute);
     data[2] = _convert_to_bcd(t.hour);
     
+    while(_i2c.is_busy());
+    
     _i2c.start(_address & 0xFE);    //書き込みモード
     _i2c.write((const unsigned char*)&_seconds_address, sizeof(unsigned char));
     _i2c.write(data, data.size());
@@ -37,6 +41,8 @@ void rtc::set(const time& t)
 time rtc::get() const 
 {
     array<unsigned char, 3> buf;
+    
+    while(_i2c.is_busy());
     
     _i2c.start(_address & 0xFE);    //書き込みモード
     _i2c.write((const unsigned char*)&_seconds_address, sizeof(unsigned char));
