@@ -102,8 +102,8 @@ string format_string(const char* format, ...)
 			{
 				++p;
 				if((*p >= '1') && (*p <= '9')) {
-					pad = *p++ - '0';
-					while ((*p >= '0') && (*p <= '9')) pad = pad * 10 + (*p++ - '0');
+					pre = *p++ - '0';
+					while ((*p >= '0') && (*p <= '9')) pre = pre * 10 + (*p++ - '0');
 				}
 			}
 
@@ -119,7 +119,7 @@ string format_string(const char* format, ...)
 					s += xtoa((unsigned int)va_arg(args, unsigned int), pad);
 				break;
 				case 'f':
-					s += ftoa((float)va_arg(args, float), pre, pad);
+					s += ftoa((double)va_arg(args, double), pre, pad);
 				break;
 				case 'd':
 					s += dtoa((int)va_arg(args, int), pad);
