@@ -8,6 +8,7 @@ namespace util
 {
 
 //std::listの簡易実装
+//中身は片方向リンクリスト
 template<class T> 
 class list
 {
@@ -42,11 +43,33 @@ class list
     public:
     list() : first(NULL), last(NULL) { }
     ~list();
+    T& front() { return first->data; }
+    T& back() { return last->data; }
+    bool empty() { return NULL == first; }
+    void push_front(const T& data);
     void push_back(const T& data);
+    void pop_front();
+    //void pop_back();
     iterator begin() { return iterator(first); }
     iterator end() { return iterator(NULL); }
 
 };
+
+template<class T> 
+void list<T>::push_front(const T& data)
+{
+    node* n = new node(data);
+    
+    if(NULL == first)
+    {
+        first = n;
+        last = first;
+        return;
+    }
+    
+    n->next = first;
+    first = n;
+}
 
 template<class T> 
 void list<T>::push_back(const T& data)
@@ -62,6 +85,18 @@ void list<T>::push_back(const T& data)
     
     last->next = n;
     last = n;
+}
+
+template<class T>
+void list<T>::pop_front()
+{
+    if(NULL == first)
+        return;
+    
+    node* n = first;
+    first = first->next;
+    
+    delete n;
 }
 
 template<class T> 

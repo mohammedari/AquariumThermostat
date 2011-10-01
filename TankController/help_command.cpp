@@ -12,6 +12,11 @@ void help_command::execute(const serial_communication& s, const string& paramete
         s.write_line("usage: get <parameter>");
         s.write_line("<parameter> = status, time");
     }
+    else if("set" == parameter)
+    {
+        s.write_line("usage: set <parameter> <value>");
+        s.write_line("<parameter> <value> = time xx:xx:xx, temperature xx.x");
+    }
     else
     {
         s.write_line("Do you need a help?");

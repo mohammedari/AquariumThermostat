@@ -94,12 +94,14 @@ void main(void)
     command_manager cm;
     
     get_command gc(status);
+    set_command sc(status, clock);
     help_command hc;
     test_command tc;
     default_command dc;
     
     s.register_receiver(cm);
     cm.register_command(gc);
+    cm.register_command(sc);
     cm.register_command(hc);
     cm.register_command(tc);
     cm.register_command(dc); 
@@ -121,6 +123,9 @@ void main(void)
 		status.is_cooler_on() ? c.on() : c.off();
 		status.is_light_on() ? l.on() : l.off();
 		
+        //コマンドの実行
+        cm.execute(s);
+        
 		dog.watch();
     }
     

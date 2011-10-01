@@ -6,26 +6,15 @@
 #include "wait.hpp"
 #include "serial_communication.hpp"
 #include "stddef.h"
+#include "split_string.hpp"
 
 namespace util
 {
 
 void command_manager::parse_command(serial_communication& s, const string& line)
 {
-    int index = line.find_first_of(_separator);
-    string command_str;
-    string parameter_str;
-    
-    if(-1 == index)
-    {
-        command_str = line;
-        parameter_str = "";
-    }
-    else
-    {
-        command_str = line.substr(0, index);
-        parameter_str = line.substr(index + 1);
-    }
+    string command_str, parameter_str;
+    split_string(line, _separator, command_str, parameter_str);
 
     for(list<command_base*>::iterator i = _command_list.begin(); i != _command_list.end(); ++i)
         if((*i)->is_match(command_str))
@@ -66,10 +55,8 @@ void command_manager::on_received(serial_communication& s, char c)
     if(serial_communication::is_new_line(c))
     {
         s.putc(c);
-        parse_command(s, _line);
+        _queue.push_back(_line);
         clear_received_character();
-        
-        show_command_request_character(s);
     }
     else if(serial_communication::is_back_space(c))
     {
@@ -78,6 +65,16 @@ void command_manager::on_received(serial_communication& s, char c)
             remove_one_character();
             s.putc(c); s.putc(' '); s.putc(c);  //ñﬂÇ¡Çƒè„èëÇ´ÇµÇƒñﬂÇÈ
         }
+    }
+}
+
+void command_manager::execute(serial_communication& s)
+{
+    while(!_queue.empty())
+    {
+        parse_command(s, _queue.front());
+        show_command_request_character(s);
+        _queue.pop_front();
     }
 }
     
