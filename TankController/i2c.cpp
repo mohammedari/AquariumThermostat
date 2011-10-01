@@ -3,6 +3,9 @@
 #include "stddef.h"
 #include "iodefine.h"
 
+#include "serial_communication.hpp"
+#include "format_string.hpp"
+
 namespace util
 {
 
@@ -65,7 +68,6 @@ void i2c::stop() const
     
     while(!IIC2.ICSR.BIT.STOP);
     
-    volatile unsigned char dummy = IIC2.ICDRR;
     IIC2.ICCR1.BIT.RCVD = 0;    //
     IIC2.ICIER.BIT.ACKBT = 0;   //受信の後始末
     
@@ -94,14 +96,14 @@ void i2c::read(unsigned char* buff, size_t size) const
     
     for(size_t i = 0; i < size; ++i)
     {
-        while(!IIC2.ICSR.BIT.RDRF);
-        
         //最終フレーム
         if(i == size - 1)
         {
             IIC2.ICCR1.BIT.RCVD = 1;    //次受信禁止
             IIC2.ICIER.BIT.ACKBT = 1;   //NACK送信
         }
+     
+        while(!IIC2.ICSR.BIT.RDRF);
                     
         buff[i] = IIC2.ICDRR;
     }

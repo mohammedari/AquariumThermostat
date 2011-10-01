@@ -74,8 +74,8 @@ void main(void)
     s.write_line("rtc ok");
     
     //LCD
-    display d;
-    d.write_line(0, string("Hello!"));
+    //display d;
+    //d.write_line(0, string("Hello!"));
     s.write_line("lcd ok");
     
     //…‘…‚Ìó‘Ô
