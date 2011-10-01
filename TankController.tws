@@ -7,17 +7,9 @@
 [GENERAL_DATA]
 [BREAKPOINTS]
 [OPEN_WORKSPACE_FILES]
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.cpp" 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.hpp" 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\TankController.cpp" 
 [WORKSPACE_FILE_STATES]
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\TankController.cpp" 8 21 1134 597 0 0 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.cpp" 160 30 1130 622 0 2 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\display.hpp" 200 96 1130 455 0 3 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" 137 47 1130 608 0 4 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" 82 151 1130 455 0 1 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\TankController.cpp" 59 19 1134 597 0 0 
 [LOADED_PROJECTS]
 "TankController" 
 [END]
