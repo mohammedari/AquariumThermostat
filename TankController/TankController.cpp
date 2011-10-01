@@ -95,15 +95,17 @@ void main(void)
     
     get_command gc(status);
     set_command sc(status, clock);
+    save_command sac(status, rom, setting_address);
     help_command hc;
-    test_command tc;
+    //test_command tc;
     default_command dc;
     
     s.register_receiver(cm);
     cm.register_command(gc);
     cm.register_command(sc);
+    cm.register_command(sac);
     cm.register_command(hc);
-    cm.register_command(tc);
+    //cm.register_command(tc);
     cm.register_command(dc); 
     
     //‰Šú‰»Š®—¹

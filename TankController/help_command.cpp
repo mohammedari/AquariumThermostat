@@ -17,11 +17,16 @@ void help_command::execute(const serial_communication& s, const string& paramete
         s.write_line("usage: set <parameter> <value>");
         s.write_line("<parameter> <value> = time xx:xx:xx, temperature xx.x");
     }
+    else if("save" == parameter)
+    {
+        s.write_line("usage: save");
+        s.write_line("This command saves parameters to eeprom.");
+    }
     else
     {
         s.write_line("Do you need a help?");
+        s.write_line("Available commands are \"get\", \"set\", \"save\".");
         s.write_line("Please check \"help <command>\" for more information.");
-        s.write_line("<command> = get, set");
     }
 }
 

@@ -13,18 +13,18 @@ void set_command::execute(const serial_communication& s, const string& parameter
 {
     string command, value;
     split_string(parameter, ' ', command, value);
-    
+        
     if("time" == command)
     {   
-        array<unsigned char, 3> arr;
+        array<int, 3> arr;
         
         for(int i = 0; i < 3; i++)
         {
             string l, r;
             split_string(value, ':', l, r);
-                    
+                                
             arr[i] = atoi(l.c_str());
-            if(0 >= arr[i])
+            if(0 > arr[i])
             {
                 s.write_line("Invalid value was entered. Format is \"xx:xx:xx\".");
                 return;
@@ -33,9 +33,11 @@ void set_command::execute(const serial_communication& s, const string& parameter
             value = r;
         }
         
-        _clock.set(time(arr[0], arr[1], arr[2]));
+        time t = time(arr[0], arr[1], arr[2]);
+        _clock.set(t);
+        s.write_line("Time was set to " + t.str());
     }
-    if("temperature" == command)
+    else if("temperature" == command)
     {
         float f = atof(value.c_str());
         if(0 == f)
@@ -45,9 +47,10 @@ void set_command::execute(const serial_communication& s, const string& parameter
         }
         
         _status.setting_temperature = temperature(f);
+        s.write_line("Temperature was set to " + _status.setting_temperature.str());
     }
     else
-        s.write_line("Invalid parameter was entered. Please check \"help get\".");
+        s.write_line("Invalid parameter was entered. Please check \"help set\".");
 }
 
 }}
