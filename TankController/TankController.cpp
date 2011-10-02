@@ -24,8 +24,6 @@
 #include "tank_status.hpp"
 #include "wait.hpp"
 #include "alert.hpp"
-#include "light_sequence.hpp"
-#include "setting.hpp"
 #include <string>
 
 using namespace util;
@@ -49,11 +47,11 @@ void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
 
 void main(void)
 {   
-    serial_communication& serial = serial_communication::get_instance();
-    serial.write_line("---------------------------");
-    serial.write_line("      tank controller");
-    serial.write_line("---------------------------");
-    serial.write_line("initializing devices...");
+    serial_communication& s = serial_communication::get_instance();
+    s.write_line("---------------------------");
+    s.write_line("      tank controller");
+    s.write_line("---------------------------");
+    s.write_line("initializing devices...");
     
 	//SSR
 	heater h;
@@ -62,47 +60,47 @@ void main(void)
 	
     //ウォッチドッグ
     watch_dog dog;
-    serial.write_line("watchdog ok");
+    s.write_line("watchdog ok");
 	
     //温度計
 	thermometer thermo;
-    serial.write_line("thermometer ok");
+    s.write_line("thermometer ok");
     
     //EEPROMとRTC
     i2c& i = i2c::get_instance();
     eeprom rom(i);
-    serial.write_line("eeprom ok");
+    s.write_line("eeprom ok");
     rtc clock(i);
-    serial.write_line("rtc ok");
+    s.write_line("rtc ok");
     
     //LCD
     //display d;
     //d.write_line(0, string("Hello!"));
-    serial.write_line("lcd ok");
+    s.write_line("lcd ok");
     
     //水槽の状態
-    serial.write_line("initializing status...");
+    s.write_line("initializing status...");
     bool e = dog.is_error_occured_in_previous_execution();
     if(e)
     {
-        serial.write_line("error occured in previous execution!");
+        s.write_line("error occured in previous execution!");
         alert();
     }
     tank_status status(e);
-    setting set = rom.load<setting>(setting_address);
+    status.setting_temperature = rom.load<temperature>(setting_address);
     measure(status, clock, thermo);
     
     //コマンド管理
     command_manager cmmgr;
     
     get_command getc(status);
-    set_command setc(set, clock);
-    save_command savec(set, rom, setting_address);
+    set_command setc(status, clock);
+    save_command savec(status, rom, setting_address);
     help_command helpc;
     halt_command haltc;
     default_command defaultc;
     
-    serial.register_receiver(cmmgr);
+    s.register_receiver(cmmgr);
     cmmgr.register_command(getc);
     cmmgr.register_command(setc);
     cmmgr.register_command(savec);
@@ -111,9 +109,9 @@ void main(void)
     cmmgr.register_command(defaultc); 
     
     //初期化完了
-    serial.write_line("initialize complete");
-    serial.write_line("---------------------------");
-    cmmgr.show_command_request_character(serial);
+    s.write_line("initialize complete");
+    s.write_line("---------------------------");
+    cmmgr.show_command_request_character(s);
     
     dog.run();
     while(true)
@@ -122,13 +120,13 @@ void main(void)
 		measure(status, clock, thermo);
 		
 		//SSRの切り替え
-		status.update_switches(set);
+		status.update_switches();
 		status.is_heater_on() ? h.on() : h.off();
 		status.is_cooler_on() ? c.on() : c.off();
 		status.is_light_on() ? l.on() : l.off();
 		
         //コマンドの実行
-        cmmgr.execute(serial);
+        cmmgr.execute(s);
         
 		dog.watch();
     }

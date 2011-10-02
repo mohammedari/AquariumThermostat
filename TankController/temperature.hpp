@@ -15,9 +15,9 @@ class temperature
     string str() const;
     
     public:
-    bool operator< (const temperature& t) const { return _value < t._value; }
-    bool operator> (const temperature& t) const { return _value > t._value; }
-    float operator- (const temperature& t) const { return _value - t._value; }
+    bool operator< (const temperature& t) { return _value < t._value; }
+    bool operator> (const temperature& t) { return _value > t._value; }
+    float operator- (const temperature& t) { return _value - t._value; }
 };
 
 }

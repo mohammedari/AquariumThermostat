@@ -4,7 +4,6 @@
 
 #include "temperature.hpp"
 #include "time.hpp"
-#include "setting.hpp"
 
 namespace tank_controller
 {
@@ -25,6 +24,7 @@ class tank_status
     
     public:
     temperature current_temperature;
+    temperature setting_temperature;
     time current_time;
     bool is_heater_on() { return _is_heater_on; }
     bool is_cooler_on() { return _is_cooler_on; }
@@ -39,9 +39,9 @@ class tank_status
           _is_crashed(crashed)
     {
     }
-    string upper_line_str(const setting& set) const;
+    string upper_line_str() const;
     string lower_line_str() const;
-    void update_switches(const setting& set);
+    void update_switches();
 };
 
 }
