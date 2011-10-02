@@ -10,12 +10,12 @@ void help_command::execute(const serial_communication& s, const string& paramete
     if("get" == parameter)
     {
         s.write_line("usage: get <parameter>");
-        s.write_line("<parameter> = status, time");
+        s.write_line("<parameter> = status, time, light");
     }
     else if("set" == parameter)
     {
         s.write_line("usage: set <parameter> <value>");
-        s.write_line("<parameter> <value> = time xx:xx:xx, temperature xx.x");
+        s.write_line("<parameter> <value> = time xx:xx:xx, temperature xx.x, light xx (on|off)");
     }
     else if("save" == parameter)
     {

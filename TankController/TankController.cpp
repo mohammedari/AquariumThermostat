@@ -24,6 +24,7 @@
 #include "tank_status.hpp"
 #include "wait.hpp"
 #include "alert.hpp"
+#include "format_string.hpp"
 #include <string>
 
 using namespace util;
@@ -86,9 +87,11 @@ void main(void)
         s.write_line("error occured in previous execution!");
         alert();
     }
-    tank_status status(e);
-    status.setting_temperature = rom.load<temperature>(setting_address);
+    tank_status status = rom.load<tank_status>(setting_address);
+    status.is_crashed = e;
     measure(status, clock, thermo);
+    
+    s.write_line(format_string("sizeof(tank_status) = %d", sizeof(tank_status)));
     
     //ƒRƒ}ƒ“ƒhŠÇ—
     command_manager cmmgr;

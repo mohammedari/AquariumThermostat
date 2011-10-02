@@ -13,7 +13,7 @@ string tank_status::upper_line_str() const
 		current_temperature.str().c_str(), 
 		_arrow, 
 		setting_temperature.str().c_str(), 
-		_is_crashed ? 'E' : ' ');
+		is_crashed ? 'E' : ' ');
 }
 
 string tank_status::lower_line_str() const
@@ -37,7 +37,10 @@ void tank_status::update_switches()
     if(1.0 < current_temperature - setting_temperature)
         _is_cooler_on = true;
         
-    //lightのスイッチについてもココで操作
+    if(light_seq.is_on(current_time))
+        _is_light_on = true;
+    else
+        _is_light_on = false;
         
 }
 

@@ -34,7 +34,7 @@ string dtoa(int i, unsigned char padding = 0 )
 	return s + _toa((unsigned int)i, 10, padding);
 }
 
-string ftoa(float f, unsigned char precision = 1, unsigned char padding = 0)
+string ftoa(double f, unsigned char precision = 1, unsigned char padding = 0)
 {
 	string s;
 	bool minus = false;
@@ -56,7 +56,7 @@ string ftoa(float f, unsigned char precision = 1, unsigned char padding = 0)
 	if(precision > 0)
 	{
 		s += '.';
-		float g = f - i;
+		double g = f - i;
 		for(int p = 0; p < precision; p++)
 		{
 			g *= 10;

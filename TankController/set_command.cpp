@@ -40,14 +40,46 @@ void set_command::execute(const serial_communication& s, const string& parameter
     else if("temperature" == command)
     {
         float f = atof(value.c_str());
-        if(0 == f)
+        if(0 > f)
         {
-            s.write_line("Invalid value was entered. Please enter float value after \"temperature\".");
+            s.write_line("Invalid value was entered.");
+            s.write_line("Please enter positive float value.");
             return;
         }
         
         _status.setting_temperature = temperature(f);
         s.write_line("Temperature was set to " + _status.setting_temperature.str());
+    }
+    else if("light" == command)
+    {
+        string hour, sw;
+        split_string(value, ' ', hour, sw);
+        int h = atoi(hour.c_str());
+        
+        if(h < 0 && 23 < h)
+        {
+            s.write_line("Invalid hour was selected.");
+            s.write_line("Please enter 0-23 value after \"light\".");
+            return;
+        }
+        
+        if("on" == sw)
+            _status.light_seq.set_on(h);
+        else if("off" == sw)
+            _status.light_seq.set_off(h);
+        else
+        {
+            s.write_line("Invalid switch was entered.");
+            s.write_line("Please enter \"on\" or \"off\" after hour number.");
+            return;
+        }
+        
+        //s.write_line("Light swiches " + sw + " at " + hour + ".");
+        s.write("Light switches ");
+        s.write(sw);
+        s.write(" at ");
+        s.write(hour);
+        s.write_line(".");
     }
     else
         s.write_line("Invalid parameter was entered. Please check \"help set\".");

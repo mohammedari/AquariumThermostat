@@ -4,6 +4,7 @@
 
 #include "temperature.hpp"
 #include "time.hpp"
+#include "light_sequence.hpp"
 
 namespace tank_controller
 {
@@ -20,23 +21,25 @@ class tank_status
     bool _is_heater_on;
     bool _is_cooler_on;
     bool _is_light_on;
-    bool _is_crashed;
+    
+    public:
+    bool is_crashed;
     
     public:
     temperature current_temperature;
     temperature setting_temperature;
     time current_time;
+    light_sequence light_seq;
     bool is_heater_on() { return _is_heater_on; }
     bool is_cooler_on() { return _is_cooler_on; }
     bool is_light_on() { return _is_light_on; }
-    bool is_crashed() { return _is_crashed; }
     
     public:
-    tank_status(bool crashed)
+    tank_status()
         : _is_heater_on(false),
           _is_cooler_on(false),
           _is_light_on(false),
-          _is_crashed(crashed)
+          is_crashed(false)
     {
     }
     string upper_line_str() const;
