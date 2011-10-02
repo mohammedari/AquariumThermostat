@@ -5,4 +5,4 @@
 #include "get_command.hpp"
 #include "set_command.hpp"
 #include "save_command.hpp"
-#include "test_command.hpp"
+#include "halt_command.hpp"

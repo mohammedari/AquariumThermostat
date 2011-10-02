@@ -8,7 +8,7 @@ namespace commands {
     
 void save_command::execute(const serial_communication& s, const string& parameter)
 {
-    _rom.save<temperature>(_address, _status.setting_temperature);
+    _rom.save<setting>(_address, _set);
     s.write_line("Data was saved.");
 }
 

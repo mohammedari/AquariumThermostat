@@ -40,14 +40,14 @@ void set_command::execute(const serial_communication& s, const string& parameter
     else if("temperature" == command)
     {
         float f = atof(value.c_str());
-        if(0 == f)
+        if(0 >= f)
         {
             s.write_line("Invalid value was entered. Please enter float value after \"temperature\".");
             return;
         }
         
-        _status.setting_temperature = temperature(f);
-        s.write_line("Temperature was set to " + _status.setting_temperature.str());
+        _set.setting_temperature = temperature(f);
+        s.write_line("Temperature was set to " + _set.setting_temperature.str());
     }
     else
         s.write_line("Invalid parameter was entered. Please check \"help set\".");

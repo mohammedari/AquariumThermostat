@@ -139,6 +139,7 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\format_string.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\get_command.cpp" "User" "C++ source file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\get_command.hpp" "User" "C++ header file|tank_controller|command" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\halt_command.hpp" "User" "C++ header file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\heater.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\help_command.cpp" "User" "C++ source file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\help_command.hpp" "User" "C++ header file|tank_controller|command" 2 
@@ -150,6 +151,7 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" "User" "C++ source file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light.hpp" "User" "C++ header file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light_sequence.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\list.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "User" "C++ source file" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "User" "C++ source file|tank_controller" 2 
@@ -163,6 +165,7 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\serial_communication_receiver_base.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\set_command.cpp" "User" "C++ source file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\set_command.hpp" "User" "C++ header file|tank_controller|command" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\setting.hpp" "User" "C++ header file" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\split_string.cpp" "User" "C++ source file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\split_string.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\ssr.cpp" "User" "C++ source file|tank_controller" 2 
@@ -173,7 +176,6 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\tank_status.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\temperature.cpp" "User" "C++ source file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\temperature.hpp" "User" "C++ header file|tank_controller" 2 
-"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\test_command.hpp" "User" "C++ header file|tank_controller|command" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\thermometer.cpp" "User" "C++ source file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\thermometer.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\time.cpp" "User" "C++ source file|tank_controller" 2 
