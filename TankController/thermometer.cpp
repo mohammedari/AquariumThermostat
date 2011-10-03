@@ -8,7 +8,7 @@ namespace tank_controller
 {
 	
 //5/(2^10)[volt/bit]A10mV‚Å1
-const double thermometer::_conversion_gain = 5.0 / 0x3FF * 100;
+const double thermometer::_conversion_gain = 5.0 / 1024 * 100;
 	
 temperature thermometer::measure() const
 {
