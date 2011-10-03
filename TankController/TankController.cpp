@@ -91,8 +91,6 @@ void main(void)
     status.is_crashed = e;
     measure(status, clock, thermo);
     
-    s.write_line(format_string("sizeof(tank_status) = %d", sizeof(tank_status)));
-    
     //コマンド管理
     command_manager cmmgr;
     
@@ -121,17 +119,31 @@ void main(void)
     {
         //状態の更新
 		measure(status, clock, thermo);
+        
+        dog.watch();
 		
 		//SSRの切り替え
 		status.update_switches();
 		status.is_heater_on() ? h.on() : h.off();
 		status.is_cooler_on() ? c.on() : c.off();
 		status.is_light_on() ? l.on() : l.off();
-		
-        //コマンドの実行
-        cmmgr.execute(s);
         
-		dog.watch();
+        dog.watch();
+        
+        //LCDの更新
+        //ここでLCDを更新
+        
+        dog.watch();
+        
+        //500msウェイト
+        for(int i = 0; i < 10; i++)
+        {
+            cmmgr.execute(s);   //コマンドの実行
+    		dog.watch();
+            wait(50);
+        }
+        
+        dog.watch();
     }
     
     serial_communication::delete_instance();

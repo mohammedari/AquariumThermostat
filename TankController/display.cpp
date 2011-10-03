@@ -17,7 +17,7 @@ display::display()
 	_initialized = true;
 	
 	//PORT1 0,1,2プルアップなし全汎用出力
-	IO.PMR1.BYTE  &= ~(0x01);
+	IO.PMR1.BIT.TMOW = 0;
 	IO.PUCR1.BYTE &= ~(0x07);
 	IO.PCR1       |= 0x07;
 	IO.PDR1.BYTE  &= ~(0x07);

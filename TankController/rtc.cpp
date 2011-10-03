@@ -50,9 +50,9 @@ time rtc::get() const
     _i2c.read(buf, buf.size());
     _i2c.stop();
     
-    return time(_convert_from_bcd(buf[2]), 
-                _convert_from_bcd(buf[1]), 
-                _convert_from_bcd(buf[0])); 
+    return time(_convert_from_bcd(buf[2] & 0x3F), 
+                _convert_from_bcd(buf[1] & 0x3F), 
+                _convert_from_bcd(buf[0] & 0x7F));  //必要なデータだけマスクして変換 
 }
 
 unsigned char rtc::_convert_to_bcd(unsigned char integer) const

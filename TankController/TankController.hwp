@@ -150,6 +150,8 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" "User" "C++ source file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light.hpp" "User" "C++ header file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light_sequence.cpp" "User" "C++ source file|tank_controller" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light_sequence.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\list.hpp" "User" "C++ header file|util" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "User" "C++ source file" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "User" "C++ source file|tank_controller" 2 
@@ -220,6 +222,7 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\i2c.cpp" "0005adf112b7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\intprg.cpp" "046f37123e37cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" "0caa0d73cf67cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light_sequence.cpp" "047436868018cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "046f37123e37cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "043d0833bcb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\save_command.cpp" "0f972ae05a08cc10" 2 
@@ -236,7 +239,7 @@
 [OPTIONS_Debug_Renesas H8S,H8/300 C/C++ Library Generator]
 "Single Shot" "0059b70568c7cc10" 1 
 [OPTIONS_Debug_Renesas OptLinker]
-"Single Shot" "0750bae05a08cc10" 5 
+"Single Shot" "0e02c6868018cc10" 5 
 [OPTIONS_Debug]
 "" 0 
 "[V|VERSION|1] [B|DEBUG|1] [S|OUTPUTPATH|^"$(CONFIGDIR)\$(FILELEAF).obj^"] [B|LIST|1] [S|LISTPATH|^"$(CONFIGDIR)\$(FILELEAF).lis^"] [B|SECTION|1] [B|ERRORPATH|1] [B|CHGINCPATH|1] [S|CPU|300HN] [I|SBR|0]
@@ -272,6 +275,7 @@
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\i2c.cpp" "0005adf112b7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\intprg.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\lcd.cpp" "07534dafd177cc10" 2 
+"C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\light_sequence.cpp" "047436868018cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\resetprg.cpp" "07534dafd177cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\rtc.cpp" "043d0833bcb7cc10" 2 
 "C:\Users\mohammedari\Documents\My Dropbox\HEW\TankController\TankController\save_command.cpp" "0f972ae05a08cc10" 2 
@@ -288,7 +292,7 @@
 [OPTIONS_Release_Renesas H8S,H8/300 C/C++ Library Generator]
 "Single Shot" "02180343e177cc10" 1 
 [OPTIONS_Release_Renesas OptLinker]
-"Single Shot" "0750bae05a08cc10" 5 
+"Single Shot" "0e02c6868018cc10" 5 
 [OPTIONS_Release]
 "" 0 
 "[V|VERSION|1] [B|DEBUG|0] [S|OUTPUTPATH|^"$(CONFIGDIR)\$(FILELEAF).obj^"] [B|LIST|0] [B|CHGINCPATH|1] [B|ERRORPATH|1] [S|CPU|300HN]" 4 
