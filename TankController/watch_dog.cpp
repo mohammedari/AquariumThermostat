@@ -21,6 +21,16 @@ void watch_dog::run()
 	WDT.TCSRWD.BYTE = a;		//書込み禁止
 }
 
+void watch_dog::stop()
+{
+	unsigned char a = WDT.TCSRWD.BYTE & 0xCF;
+	unsigned char b = WDT.TCSRWD.BYTE & 0xF3;
+    
+	WDT.TCSRWD.BYTE = a + 0x10;	//書き込み許可
+	WDT.TCSRWD.BYTE = b;    	//WDTストップ
+	WDT.TCSRWD.BYTE = a;		//書込み禁止
+}
+
 void watch_dog::watch()
 {
 	unsigned char b = WDT.TCSRWD.BYTE & 0x3F;

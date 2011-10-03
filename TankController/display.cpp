@@ -32,8 +32,10 @@ display::display()
 	reset();
 }
 
-void display::update(const tank_status& state)
+void display::update(const tank_status& status)
 {
+    write_line(0, status.upper_line_str());
+    write_line(1, status.lower_line_str());
 }
 	
 }

@@ -75,8 +75,7 @@ void main(void)
     s.write_line("rtc ok");
     
     //LCD
-    //display d;
-    //d.write_line(0, string("Hello!"));
+    display disp;
     s.write_line("lcd ok");
     
     //水槽の状態
@@ -119,7 +118,6 @@ void main(void)
     {
         //状態の更新
 		measure(status, clock, thermo);
-        
         dog.watch();
 		
 		//SSRの切り替え
@@ -127,23 +125,34 @@ void main(void)
 		status.is_heater_on() ? h.on() : h.off();
 		status.is_cooler_on() ? c.on() : c.off();
 		status.is_light_on() ? l.on() : l.off();
-        
         dog.watch();
         
         //LCDの更新
-        //ここでLCDを更新
-        
+        disp.update(status);
         dog.watch();
         
-        //500msウェイト
-        for(int i = 0; i < 10; i++)
+        //コマンドの実行
+        cmmgr.execute(s);
+        dog.watch();
+        
+        //200msウェイト
+        for(int i = 0; i < 4; ++i)
         {
-            cmmgr.execute(s);   //コマンドの実行
-    		dog.watch();
             wait(50);
+            dog.watch();
         }
         
-        dog.watch();
+        //温度異常
+        if(!status.current_temperature.is_valid())
+        {
+            h.off(); c.off(); l.off();
+            
+            dog.stop();
+            s.write_line("Thermometer fault is detected!");
+            
+            while(true)
+                alert();
+        }
     }
     
     serial_communication::delete_instance();

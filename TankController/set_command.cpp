@@ -3,6 +3,7 @@
 #include "array.hpp"
 #include "temperature.hpp"
 #include "split_string.hpp"
+#include "format_string.hpp"
 
 using namespace util;
 
@@ -40,10 +41,10 @@ void set_command::execute(const serial_communication& s, const string& parameter
     else if("temperature" == command)
     {
         float f = atof(value.c_str());
-        if(0 > f)
+        if(temperature::min > f || temperature::max < f)
         {
             s.write_line("Invalid value was entered.");
-            s.write_line("Please enter positive float value.");
+            s.write_line(format_string("Please enter float value from %4.1f to %4.1f.", temperature::min, temperature::max));
             return;
         }
         
@@ -74,7 +75,7 @@ void set_command::execute(const serial_communication& s, const string& parameter
             return;
         }
         
-        //s.write_line("Light swiches " + sw + " at " + hour + ".");
+        //s.write_line("Light swiches " + sw + " at " + hour + ".");    //スタックオーバーフロー
         s.write("Light switches ");
         s.write(sw);
         s.write(" at ");

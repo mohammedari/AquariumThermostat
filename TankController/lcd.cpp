@@ -3,10 +3,6 @@
 #include "tank_status.hpp"
 #include "wait.hpp" 
 
-#include "iodefine.h"
-#include "serial_communication.hpp"
-#include "format_string.hpp"
-
 namespace util
 {
 
@@ -19,7 +15,7 @@ void lcd::reset()
 	//LCD‚Ì‰Šú‰»‘Ò‚¿
 	wait(15);
 	
-    //‚æ‚­‚í‚©‚ñ‚È‚¢‚¯‚Ç3‰ñ 0011
+    //3‰ñ 0011
 	set_register_select(false);
 	set_upper_order_bit(0x03);
 	enable_signal();
@@ -32,7 +28,7 @@ void lcd::reset()
     wait_usec(100);
 	
     //4bit
-	set_upper_order_bit(0x03);
+	set_upper_order_bit(0x02);
 	enable_signal();
     wait_usec(40);
     
@@ -93,22 +89,13 @@ void lcd::enable_signal()
 
 void lcd::write(bool register_select, unsigned char data)
 {
-    serial_communication& s = serial_communication::get_instance();
-    
 	set_register_select(register_select);
 	set_read_write(false);
     
-    s.write(format_string("%1d%1d", IO.PDR1.BIT.B1, IO.PDR1.BIT.B0));
-    
 	set_upper_order_bit(data >> 4);        
 	enable_signal();
-    
-    s.write(format_string("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
-    
 	set_upper_order_bit(0x0F & data);
 	enable_signal();
-    
-    s.write_line(format_string("%1d%1d%1d%1d", IO.PDR5.BIT.B0, IO.PDR5.BIT.B2, IO.PDR5.BIT.B1, IO.PDR5.BIT.B3));
 }
 
 void lcd::set_upper_order_bit(unsigned char data)

@@ -110,13 +110,13 @@ string format_string(const char* format, ...)
 			switch(*p)
 			{
 				case 'b':
-					s += btoa((unsigned int)va_arg(args, unsigned int), pad);
+					s += btoa((unsigned int)va_arg(args, int), pad);
 				break;
 				case 'o':
-					s += otoa((unsigned int)va_arg(args, unsigned int), pad);
+					s += otoa((unsigned int)va_arg(args, int), pad);
 				break;
 				case 'x':
-					s += xtoa((unsigned int)va_arg(args, unsigned int), pad);
+					s += xtoa((unsigned int)va_arg(args, int), pad);
 				break;
 				case 'f':
 					s += ftoa((double)va_arg(args, double), pre, pad);
@@ -125,7 +125,7 @@ string format_string(const char* format, ...)
 					s += dtoa((int)va_arg(args, int), pad);
 				break;
 				case 'c':
-					s += (char)va_arg(args, char);
+					s += (char)va_arg(args, int);
 				break;
 				case 's':
 					s += (char*)va_arg(args, char*);
