@@ -11,7 +11,7 @@ class array
 	T _array[N];
 	
 	public:
-	size_t size() { return N; }
+	size_t size() const { return N; }
 	
 	public:
 	operator T*() { return _array; }
@@ -19,8 +19,8 @@ class array
     public:
 	typedef T* iterator;
 	
-    iterator begin() { return iterator(_array); }
-    iterator end() { return iterator(_array + N); }
+    iterator begin() const { return iterator(_array); }
+    iterator end() const { return iterator(_array + N); }
 };
 
 }

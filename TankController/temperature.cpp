@@ -14,7 +14,7 @@ string temperature::str() const
 {
     if(!is_valid())
         return "Error!";
-	return format_string("%4.1f%c%c", _value, (char)0xDF, 'C');	//
+	return format_string("%4.1f%c%c", value, (char)0xDF, 'C');	//
 }
 
 }

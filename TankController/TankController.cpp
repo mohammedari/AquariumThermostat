@@ -25,6 +25,7 @@
 #include "wait.hpp"
 #include "alert.hpp"
 #include "format_string.hpp"
+#include "arithmetic_mean.hpp"
 #include <string>
 
 using namespace util;
@@ -39,11 +40,15 @@ void abort(void);
 #endif
 
 const unsigned int setting_address = 0x00;
+const size_t averaging_num = 10;
 
 void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
 {
+	static arithmetic_mean<float, averaging_num> mean;
+	mean.push(thermo.measure().value);
+	
     status.current_time = clock.get();
-	status.current_temperature = thermo.measure();
+	status.current_temperature = temperature(mean.average());
 }
 
 void main(void)
