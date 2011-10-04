@@ -7,14 +7,16 @@ using namespace util;
 namespace tank_controller
 {
 	
-//5/(2^10)[volt/bit]、10mVで1℃
-const double thermometer::_conversion_gain = 5.0 / 1024 * 100;
+//アルコール棒温度計で校正、線形近似
+//y = 0.6124x - 10.465
+const double thermometer::_conversion_gain = 0.6124;
+const double thermometer::_conversion_offset = -10.465;
 	
 temperature thermometer::measure() const
 {
 	unsigned int ad = _adc.scan();
 	
-	return temperature(ad * _conversion_gain);
+	return temperature(ad * _conversion_gain + _conversion_offset);
 }
 	
 }

@@ -11,6 +11,7 @@ class thermometer
 	private:
 	util::adc _adc;	//AN1
 	static const double _conversion_gain;
+    static const double _conversion_offset;
 	
     public:
 	thermometer() : _adc(0x01) { }

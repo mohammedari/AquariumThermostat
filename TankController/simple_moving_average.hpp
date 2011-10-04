@@ -30,7 +30,7 @@ void simple_moving_average<T, N>::push(const T& data)
 		
 	_arr[_index] = data;
 	++_index;
-	
+    
 	if(_num < N)
 		++_num;
 }
@@ -38,10 +38,10 @@ void simple_moving_average<T, N>::push(const T& data)
 template<class T, size_t N>
 T simple_moving_average<T, N>::average()
 {
-	T sum;
-	for(size_t i = 0; i < N; ++i)
+	T sum = 0;
+	for(size_t i = 0; i < _num; ++i)
 		sum += _arr[i];
-	
+    
 	return sum / _num;
 }
 	

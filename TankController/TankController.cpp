@@ -148,6 +148,7 @@ void main(void)
         }
         
         //â∑ìxàŸèÌ
+        /*
         if(!status.current_temperature.is_valid())
         {
             h.off(); c.off(); l.off();
@@ -158,6 +159,7 @@ void main(void)
             while(true)
                 alert();
         }
+        */
     }
     
     serial_communication::delete_instance();
