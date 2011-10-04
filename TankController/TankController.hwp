@@ -121,7 +121,6 @@
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\adc.cpp" "User" "C++ source file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\adc.hpp" "User" "C++ header file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\alert.hpp" "User" "C++ header file|tank_controller" 2 
-"C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\arithmetic_mean.hpp" "User" "C++ header file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\array.hpp" "User" "C++ header file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\buzzer.hpp" "User" "C++ header file|tank_controller" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\command_base.hpp" "User" "C++ header file|util" 2 
@@ -166,6 +165,7 @@
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\serial_communication_receiver_base.hpp" "User" "C++ header file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\set_command.cpp" "User" "C++ source file|tank_controller|command" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\set_command.hpp" "User" "C++ header file|tank_controller|command" 2 
+"C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\simple_moving_average.hpp" "User" "C++ header file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\split_string.cpp" "User" "C++ source file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\split_string.hpp" "User" "C++ header file|util" 2 
 "C:\Users\KazuyukiArimatsu\Dropbox\HEW\TankController\TankController\ssr.cpp" "User" "C++ source file|tank_controller" 2 

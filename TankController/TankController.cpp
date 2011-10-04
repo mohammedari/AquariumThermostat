@@ -25,7 +25,7 @@
 #include "wait.hpp"
 #include "alert.hpp"
 #include "format_string.hpp"
-#include "arithmetic_mean.hpp"
+#include "simple_moving_average.hpp"
 #include <string>
 
 using namespace util;
@@ -44,7 +44,7 @@ const size_t averaging_num = 10;
 
 void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
 {
-	static arithmetic_mean<float, averaging_num> mean;
+	static simple_moving_average<float, averaging_num> mean;
 	mean.push(thermo.measure().value);
 	
     status.current_time = clock.get();
