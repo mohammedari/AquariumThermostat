@@ -27,7 +27,8 @@ void set_command::execute(const serial_communication& s, const string& parameter
             arr[i] = atoi(l.c_str());
             if(0 > arr[i])
             {
-                s.write_line("Invalid value was entered. Format is \"xx:xx:xx\".");
+                s.write("Invalid value was entered.");
+                s.write_line(" Format is \"xx:xx:xx\".");
                 return;
             }   
             
@@ -44,7 +45,8 @@ void set_command::execute(const serial_communication& s, const string& parameter
         if(temperature::min > f || temperature::max < f)
         {
             s.write_line("Invalid value was entered.");
-            s.write_line(format_string("Please enter float value from %4.1f to %4.1f.", temperature::min, temperature::max));
+            s.write("Please enter float value from");
+            s.write_line(format_string(" %4.1f to %4.1f.", temperature::min, temperature::max));
             return;
         }
         
@@ -57,7 +59,7 @@ void set_command::execute(const serial_communication& s, const string& parameter
         split_string(value, ' ', hour, sw);
         int h = atoi(hour.c_str());
         
-        if(h < 0 && 23 < h)
+        if(h < 0 || 23 < h)
         {
             s.write_line("Invalid hour was selected.");
             s.write_line("Please enter 0-23 value after \"light\".");
@@ -71,11 +73,11 @@ void set_command::execute(const serial_communication& s, const string& parameter
         else
         {
             s.write_line("Invalid switch was entered.");
-            s.write_line("Please enter \"on\" or \"off\" after hour number.");
+            s.write("Please enter \"on\" or");
+            s.write_line(" \"off\" after hour number.");
             return;
         }
         
-        //s.write_line("Light swiches " + sw + " at " + hour + ".");    //スタックオーバーフロー
         s.write("Light switches ");
         s.write(sw);
         s.write(" at ");
@@ -83,7 +85,10 @@ void set_command::execute(const serial_communication& s, const string& parameter
         s.write_line(".");
     }
     else
-        s.write_line("Invalid parameter was entered. Please check \"help set\".");
+    {
+        s.write("Invalid parameter was entered.");
+        s.write_line(" Please check \"help set\".");
+    }
 }
 
 }}

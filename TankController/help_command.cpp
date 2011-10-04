@@ -22,6 +22,11 @@ void help_command::execute(const serial_communication& s, const string& paramete
         s.write_line("usage: save");
         s.write_line("This command saves parameters to eeprom.");
     }
+    else if("halt" == parameter)
+    {
+        s.write_line("usage: halt");
+        s.write_line("This command resets the controller.");
+    }
     else
     {
         s.write_line("Do you need a help?");

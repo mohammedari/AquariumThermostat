@@ -21,7 +21,10 @@ void get_command::execute(const serial_communication& s, const string& parameter
             s.write_line(_status.light_seq.str(i));
     }
     else
-        s.write_line("Invalid parameter was entered. Please check \"help get\".");
+    {
+        s.write("Invalid parameter was entered.");
+        s.write_line(" Please check \"help get\".");
+    }
 }
 
 }}

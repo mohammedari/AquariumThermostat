@@ -48,7 +48,7 @@ void measure(tank_status& status, const rtc& clock, const thermometer& thermo)
 	mean.push(thermo.measure().value);
 	
     status.current_time = clock.get();
-	status.current_temperature = temperature(mean.average());
+	status.current_temperature = temperature(mean.average());   //移動平均
 }
 
 void main(void)
@@ -136,19 +136,16 @@ void main(void)
         disp.update(status);
         dog.watch();
         
-        //コマンドの実行
-        cmmgr.execute(s);
-        dog.watch();
-        
         //200msウェイト
         for(int i = 0; i < 4; ++i)
         {
+            //コマンドの実行
+            cmmgr.execute(s);
             wait(50);
             dog.watch();
         }
         
         //温度異常
-        /*
         if(!status.current_temperature.is_valid())
         {
             h.off(); c.off(); l.off();
@@ -159,7 +156,6 @@ void main(void)
             while(true)
                 alert();
         }
-        */
     }
     
     serial_communication::delete_instance();
