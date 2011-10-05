@@ -51,7 +51,7 @@ time rtc::get() const
     _i2c.stop();
     
     return time(_convert_from_bcd(buf[2] & 0x3F), 
-                _convert_from_bcd(buf[1] & 0x3F), 
+                _convert_from_bcd(buf[1] & 0x7F), 
                 _convert_from_bcd(buf[0] & 0x7F));  //必要なデータだけマスクして変換 
 }
 
