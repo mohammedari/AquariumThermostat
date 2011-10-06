@@ -65,7 +65,7 @@ class eeprom
         {
             size_t s = _page_size - address % _page_size;   //先頭アドレスのページに書き込める大きさ
             write(address, data, s);
-            write(address + s + 1, data + s + 1, size - s);
+            write(address + s, data + s, size - s);
         }
     }
 };
