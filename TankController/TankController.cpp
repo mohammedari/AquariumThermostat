@@ -136,11 +136,13 @@ void main(void)
         disp.update(status);
         dog.watch();
         
+        //コマンドの実行
+        cmmgr.execute(s);
+        dog.watch();
+        
         //200msウェイト
         for(int i = 0; i < 4; ++i)
         {
-            //コマンドの実行
-            cmmgr.execute(s);
             wait(50);
             dog.watch();
         }
